@@ -77,13 +77,8 @@ public partial class SignUpPageViewModel : ObservableObject
             return;
         }
 
-        if (result.RequiresEmailConfirmation)
-        {
-            InfoMessage = "Cont creat. Confirma emailul, apoi autentifica-te.";
-            return;
-        }
-
-        await Shell.Current.GoToAsync("//AppTabs");
+        var loginMessage = Uri.EscapeDataString("Cont creat. Verifica emailul pentru confirmare, apoi autentifica-te.");
+        await Shell.Current.GoToAsync($"//LoginPage?info={loginMessage}");
     }
 
     [RelayCommand]

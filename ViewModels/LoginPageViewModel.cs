@@ -26,9 +26,20 @@ public partial class LoginPageViewModel : ObservableObject
     private string errorMessage = string.Empty;
 
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(HasInfo))]
+    private string infoMessage = string.Empty;
+
+    [ObservableProperty]
     private bool isBusy;
 
     public bool HasError => !string.IsNullOrWhiteSpace(ErrorMessage);
+
+    public bool HasInfo => !string.IsNullOrWhiteSpace(InfoMessage);
+
+    public void ShowInfo(string message)
+    {
+        InfoMessage = message;
+    }
 
     [RelayCommand]
     private async Task SignInAsync()
@@ -39,6 +50,7 @@ public partial class LoginPageViewModel : ObservableObject
         }
 
         ErrorMessage = string.Empty;
+        InfoMessage = string.Empty;
 
         if (string.IsNullOrWhiteSpace(Email) || string.IsNullOrWhiteSpace(Password))
         {

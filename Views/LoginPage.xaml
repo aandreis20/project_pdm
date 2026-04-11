@@ -203,6 +203,13 @@
                                            Color="{StaticResource Primary}"
                                            HorizontalOptions="Center" />
 
+                        <Label Text="{Binding InfoMessage}"
+                               IsVisible="{Binding HasInfo}"
+                               FontSize="13"
+                               TextColor="{StaticResource Primary}"
+                               HorizontalTextAlignment="Center"
+                               LineBreakMode="WordWrap" />
+
                         <Label Text="{Binding ErrorMessage}"
                                IsVisible="{Binding HasError}"
                                FontSize="13"
