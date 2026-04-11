@@ -1,5 +1,6 @@
 namespace RecipesApp.Views;
 
+using Microsoft.Extensions.DependencyInjection;
 using RecipesApp.ViewModels;
 
 public partial class SignUpPage : ContentPage
@@ -7,6 +8,6 @@ public partial class SignUpPage : ContentPage
     public SignUpPage()
     {
         InitializeComponent();
-        BindingContext = new SignUpPageViewModel();
+        BindingContext = MauiProgram.Services.GetRequiredService<SignUpPageViewModel>();
     }
 }

@@ -193,6 +193,25 @@
                                        TextColor="White" />
                             </HorizontalStackLayout>
                         </Border>
+
+                        <ActivityIndicator IsRunning="{Binding IsBusy}"
+                                           IsVisible="{Binding IsBusy}"
+                                           Color="{StaticResource Primary}"
+                                           HorizontalOptions="Center" />
+
+                        <Label Text="{Binding ErrorMessage}"
+                               IsVisible="{Binding HasError}"
+                               FontSize="13"
+                               TextColor="#BA1A1A"
+                               HorizontalTextAlignment="Center"
+                               LineBreakMode="WordWrap" />
+
+                        <Label Text="{Binding InfoMessage}"
+                               IsVisible="{Binding HasInfo}"
+                               FontSize="13"
+                               TextColor="{StaticResource Primary}"
+                               HorizontalTextAlignment="Center"
+                               LineBreakMode="WordWrap" />
                     </VerticalStackLayout>
 
                     <Grid ColumnDefinitions="*,Auto,*"

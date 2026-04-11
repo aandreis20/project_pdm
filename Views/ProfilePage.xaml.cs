@@ -1,5 +1,6 @@
 namespace RecipesApp.Views;
 
+using Microsoft.Extensions.DependencyInjection;
 using RecipesApp.ViewModels;
 
 public partial class ProfilePage : ContentPage
@@ -7,6 +8,6 @@ public partial class ProfilePage : ContentPage
     public ProfilePage()
     {
         InitializeComponent();
-        BindingContext = new ProfilePageViewModel();
+        BindingContext = MauiProgram.Services.GetRequiredService<ProfilePageViewModel>();
     }
 }

@@ -1,9 +1,13 @@
 ﻿using Microsoft.Extensions.Logging;
+using RecipesApp.Services;
+using RecipesApp.ViewModels;
 
 namespace RecipesApp;
 
 public static class MauiProgram
 {
+    public static IServiceProvider Services { get; private set; } = null!;
+
     public static MauiApp CreateMauiApp()
     {
         var builder = MauiApp.CreateBuilder();
@@ -20,6 +24,18 @@ public static class MauiProgram
         builder.Logging.AddDebug();
 #endif
 
-        return builder.Build();
+        builder.Services.AddSingleton<ISupabaseClientProvider, SupabaseClientProvider>();
+        builder.Services.AddSingleton<ISupabaseAuthService, SupabaseAuthService>();
+        builder.Services.AddSingleton<IRecipeService, SupabaseRecipeService>();
+        builder.Services.AddTransient<LoginPageViewModel>();
+        builder.Services.AddTransient<SignUpPageViewModel>();
+        builder.Services.AddTransient<RecipesPageViewModel>();
+        builder.Services.AddTransient<PlannerPageViewModel>();
+        builder.Services.AddTransient<ProfilePageViewModel>();
+
+        var app = builder.Build();
+        Services = app.Services;
+
+        return app;
     }
 }

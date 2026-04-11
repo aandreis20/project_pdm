@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:RecipesApp.ViewModels"
+             xmlns:state="clr-namespace:RecipesApp.ViewModels.UIState"
              x:Class="RecipesApp.Views.RecipesPage"
              x:DataType="vm:RecipesPageViewModel"
              BackgroundColor="{StaticResource Surface}">
@@ -127,47 +128,100 @@
                            TextColor="{StaticResource OnSurface}"
                            Margin="0,8,0,0" />
 
-                    <Border StrokeThickness="0"
-                            StrokeShape="RoundRectangle 12"
-                            BackgroundColor="{StaticResource SurfaceContainerLowest}">
-                        <Border.Shadow>
-                            <Shadow Brush="Black" Opacity="0.08" Radius="18" Offset="0,8" />
-                        </Border.Shadow>
-                        <VerticalStackLayout Spacing="0">
-                            <Grid HeightRequest="240">
-                                <Image Source="toast_egg.png" Aspect="AspectFill" />
-                                <Border Padding="10,5"
-                                        Margin="0,12,12,0"
-                                        HorizontalOptions="End"
-                                        VerticalOptions="Start"
+                    <ActivityIndicator IsRunning="{Binding IsBusy}"
+                                       IsVisible="{Binding IsBusy}"
+                                       Color="{StaticResource Primary}"
+                                       HorizontalOptions="Center" />
+
+                    <Label Text="{Binding ErrorMessage}"
+                           IsVisible="{Binding HasError}"
+                           FontSize="13"
+                           TextColor="#BA1A1A"
+                           HorizontalTextAlignment="Center"
+                           LineBreakMode="WordWrap" />
+
+                    <CollectionView ItemsSource="{Binding Recipes}"
+                                    SelectionMode="None">
+                        <CollectionView.EmptyView>
+                            <Border StrokeThickness="0"
+                                    StrokeShape="RoundRectangle 12"
+                                    BackgroundColor="{StaticResource SurfaceContainerLowest}">
+                                <Border.Shadow>
+                                    <Shadow Brush="Black" Opacity="0.08" Radius="18" Offset="0,8" />
+                                </Border.Shadow>
+                                <VerticalStackLayout Spacing="0">
+                                    <Grid HeightRequest="240">
+                                        <Image Source="toast_egg.png" Aspect="AspectFill" />
+                                    </Grid>
+                                    <VerticalStackLayout Padding="20,18,20,20"
+                                                         Spacing="10">
+                                        <Label Text="Recipes list"
+                                               FontFamily="OpenSansSemibold"
+                                               FontAttributes="Bold"
+                                               FontSize="25"
+                                               TextColor="{StaticResource OnSurface}" />
+                                        <Label Text="Coming soon"
+                                               FontFamily="OpenSansSemibold"
+                                               FontAttributes="Bold,Italic"
+                                               FontSize="34"
+                                               TextColor="{StaticResource Primary}" />
+                                        <Label Text="No recipes are visible for this user yet. Check rows and RLS policies in Supabase."
+                                               FontSize="14"
+                                               TextColor="{StaticResource OnSurfaceVariant}"
+                                               LineBreakMode="WordWrap" />
+                                    </VerticalStackLayout>
+                                </VerticalStackLayout>
+                            </Border>
+                        </CollectionView.EmptyView>
+
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="state:RecipeUi">
+                                <Border Margin="0,0,0,24"
                                         StrokeThickness="0"
-                                        StrokeShape="RoundRectangle 14"
+                                        StrokeShape="RoundRectangle 12"
                                         BackgroundColor="{StaticResource SurfaceContainerLowest}">
-                                    <Label Text="4.8"
-                                           FontFamily="OpenSansSemibold"
-                                           FontSize="12"
-                                           TextColor="{StaticResource Tertiary}" />
+                                    <Border.Shadow>
+                                        <Shadow Brush="Black" Opacity="0.08" Radius="18" Offset="0,8" />
+                                    </Border.Shadow>
+                                    <VerticalStackLayout Spacing="0">
+                                        <Grid HeightRequest="240">
+                                            <Image Source="{Binding ImageUrl}" Aspect="AspectFill" />
+                                            <Border Padding="10,5"
+                                                    Margin="12,0,0,12"
+                                                    HorizontalOptions="Start"
+                                                    VerticalOptions="End"
+                                                    StrokeThickness="0"
+                                                    StrokeShape="RoundRectangle 8"
+                                                    BackgroundColor="{StaticResource Primary}">
+                                                <Label Text="{Binding Category}"
+                                                       FontFamily="OpenSansSemibold"
+                                                       FontSize="11"
+                                                       TextColor="White" />
+                                            </Border>
+                                        </Grid>
+                                        <VerticalStackLayout Padding="20,18,20,20"
+                                                             Spacing="9">
+                                            <Label Text="{Binding Title}"
+                                                   FontFamily="OpenSansSemibold"
+                                                   FontAttributes="Bold"
+                                                   FontSize="24"
+                                                   TextColor="{StaticResource OnSurface}"
+                                                   LineBreakMode="WordWrap" />
+                                            <Label Text="{Binding Description}"
+                                                   FontSize="14"
+                                                   TextColor="{StaticResource OnSurfaceVariant}"
+                                                   LineBreakMode="WordWrap" />
+                                            <Label Text="{Binding Ingredients}"
+                                                   FontSize="13"
+                                                   TextColor="{StaticResource Outline}"
+                                                   LineBreakMode="TailTruncation"
+                                                   MaxLines="2" />
+                                        </VerticalStackLayout>
+                                    </VerticalStackLayout>
                                 </Border>
-                            </Grid>
-                            <VerticalStackLayout Padding="20,18,20,20"
-                                                 Spacing="10">
-                                <Label Text="Recipes list"
-                                       FontFamily="OpenSansSemibold"
-                                       FontAttributes="Bold"
-                                       FontSize="25"
-                                       TextColor="{StaticResource OnSurface}" />
-                                <Label Text="Coming soon"
-                                       FontFamily="OpenSansSemibold"
-                                       FontAttributes="Bold,Italic"
-                                       FontSize="34"
-                                       TextColor="{StaticResource Primary}" />
-                                <Label Text="The Supabase-backed recipe feed will be connected in the next step."
-                                       FontSize="14"
-                                       TextColor="{StaticResource OnSurfaceVariant}"
-                                       LineBreakMode="WordWrap" />
-                            </VerticalStackLayout>
-                        </VerticalStackLayout>
-                    </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
 
                     <Grid ColumnDefinitions="*,Auto"
                           Margin="0,8,0,0">

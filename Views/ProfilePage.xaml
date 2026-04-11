@@ -72,7 +72,7 @@
                                            FontSize="12"
                                            CharacterSpacing="1.2"
                                            TextColor="{StaticResource Outline}" />
-                                    <Label Text="chef@editorialkitchen.com"
+                                    <Label Text="{Binding Email}"
                                            FontSize="15"
                                            TextColor="{StaticResource OnSurface}" />
                                 </VerticalStackLayout>
@@ -121,6 +121,18 @@
                                    TextColor="White" />
                         </HorizontalStackLayout>
                     </Border>
+
+                    <ActivityIndicator IsRunning="{Binding IsBusy}"
+                                       IsVisible="{Binding IsBusy}"
+                                       Color="{StaticResource Primary}"
+                                       HorizontalOptions="Center" />
+
+                    <Label Text="{Binding ErrorMessage}"
+                           IsVisible="{Binding HasError}"
+                           FontSize="13"
+                           TextColor="#BA1A1A"
+                           HorizontalTextAlignment="Center"
+                           LineBreakMode="WordWrap" />
                 </VerticalStackLayout>
             </Grid>
         </ScrollView>
