@@ -3,12 +3,47 @@
     x:Class="RecipesApp.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:RecipesApp"
-    Title="RecipesApp">
+    xmlns:views="clr-namespace:RecipesApp.Views"
+    Title="RecipesApp"
+    FlyoutBehavior="Disabled"
+    Shell.NavBarIsVisible="False"
+    Shell.TabBarBackgroundColor="{StaticResource SurfaceContainerLowest}"
+    Shell.TabBarForegroundColor="{StaticResource Primary}"
+    Shell.TabBarTitleColor="{StaticResource Primary}"
+    Shell.TabBarUnselectedColor="{StaticResource Outline}">
 
     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+        Route="LoginPage"
+        Shell.TabBarIsVisible="False"
+        ContentTemplate="{DataTemplate views:LoginPage}" />
+
+    <TabBar Route="AppTabs">
+        <ShellContent
+            Title="Recipes"
+            ContentTemplate="{DataTemplate views:RecipesPage}"
+            Route="RecipesPage">
+            <ShellContent.Icon>
+                <FontImageSource Glyph="&#xE561;" FontFamily="MaterialIcons" Color="{StaticResource Primary}" />
+            </ShellContent.Icon>
+        </ShellContent>
+
+        <ShellContent
+            Title="Planner"
+            ContentTemplate="{DataTemplate views:PlannerPage}"
+            Route="PlannerPage">
+            <ShellContent.Icon>
+                <FontImageSource Glyph="&#xEBCC;" FontFamily="MaterialIcons" Color="{StaticResource Primary}" />
+            </ShellContent.Icon>
+        </ShellContent>
+
+        <ShellContent
+            Title="Profile"
+            ContentTemplate="{DataTemplate views:ProfilePage}"
+            Route="ProfilePage">
+            <ShellContent.Icon>
+                <FontImageSource Glyph="&#xE7FD;" FontFamily="MaterialIcons" Color="{StaticResource Primary}" />
+            </ShellContent.Icon>
+        </ShellContent>
+    </TabBar>
 
 </Shell>

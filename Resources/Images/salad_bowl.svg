@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="768" height="512" viewBox="0 0 768 512">
+  <defs>
+    <radialGradient id="plate" cx="50%" cy="45%" r="58%">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset=".72" stop-color="#f4f3f2"/>
+      <stop offset="1" stop-color="#dadad9"/>
+    </radialGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8fbf7"/>
+      <stop offset="1" stop-color="#dfe8df"/>
+    </linearGradient>
+  </defs>
+  <rect width="768" height="512" fill="url(#bg)"/>
+  <ellipse cx="384" cy="286" rx="294" ry="184" fill="url(#plate)"/>
+  <g>
+    <circle cx="318" cy="248" r="48" fill="#67a55e"/>
+    <circle cx="379" cy="220" r="54" fill="#4e8f48"/>
+    <circle cx="454" cy="244" r="54" fill="#72ad62"/>
+    <circle cx="277" cy="310" r="52" fill="#3f7d3c"/>
+    <circle cx="386" cy="316" r="68" fill="#5fa759"/>
+    <circle cx="493" cy="312" r="50" fill="#4f914a"/>
+  </g>
+  <g fill="#f4e5cf">
+    <rect x="332" y="258" width="44" height="38" rx="4" transform="rotate(12 354 277)"/>
+    <rect x="411" y="268" width="44" height="38" rx="4" transform="rotate(-17 433 287)"/>
+    <rect x="373" y="332" width="48" height="34" rx="4" transform="rotate(8 397 349)"/>
+    <rect x="270" y="285" width="44" height="36" rx="4" transform="rotate(-22 292 303)"/>
+    <rect x="480" y="266" width="42" height="36" rx="4" transform="rotate(18 501 284)"/>
+  </g>
+  <g>
+    <circle cx="328" cy="226" r="22" fill="#e24835"/>
+    <circle cx="328" cy="226" r="10" fill="#ffe5d4"/>
+    <circle cx="451" cy="218" r="22" fill="#e24835"/>
+    <circle cx="451" cy="218" r="10" fill="#ffe5d4"/>
+    <circle cx="509" cy="333" r="22" fill="#e24835"/>
+    <circle cx="509" cy="333" r="10" fill="#ffe5d4"/>
+    <circle cx="251" cy="343" r="22" fill="#e24835"/>
+    <circle cx="251" cy="343" r="10" fill="#ffe5d4"/>
+  </g>
+  <ellipse cx="384" cy="466" rx="238" ry="30" fill="#1a1c1c" opacity=".08"/>
+</svg>

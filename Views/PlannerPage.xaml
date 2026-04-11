@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:RecipesApp.ViewModels"
+             x:Class="RecipesApp.Views.PlannerPage"
+             x:DataType="vm:PlannerPageViewModel"
+             BackgroundColor="{StaticResource Surface}">
+
+    <Grid RowDefinitions="*">
+        <Border WidthRequest="340"
+                HeightRequest="340"
+                Margin="0,-120,-120,0"
+                HorizontalOptions="End"
+                VerticalOptions="Start"
+                Opacity="0.12"
+                StrokeThickness="0"
+                StrokeShape="RoundRectangle 170">
+            <Image Source="pasta_plate.png" Aspect="AspectFill" />
+        </Border>
+
+        <ScrollView VerticalScrollBarVisibility="Never">
+            <Grid Padding="24,36,24,110">
+                <VerticalStackLayout MaximumWidthRequest="560"
+                                     HorizontalOptions="Center"
+                                     Spacing="26">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="Meal Planner"
+                                   FontFamily="OpenSansSemibold"
+                                   FontAttributes="Bold,Italic"
+                                   FontSize="34"
+                                   TextColor="{StaticResource Primary}" />
+                            <Label Text="Plan your week around recipes you love."
+                                   FontSize="14"
+                                   TextColor="{StaticResource OnSurfaceVariant}" />
+                        </VerticalStackLayout>
+
+                        <Border Grid.Column="1"
+                                WidthRequest="48"
+                                HeightRequest="48"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 24"
+                                BackgroundColor="{StaticResource Primary}">
+                            <Label Text="&#xEBCC;"
+                                   FontFamily="MaterialIcons"
+                                   FontSize="24"
+                                   TextColor="White"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center" />
+                        </Border>
+                    </Grid>
+
+                    <Border StrokeThickness="0"
+                            StrokeShape="RoundRectangle 14"
+                            BackgroundColor="{StaticResource SurfaceContainerLowest}">
+                        <Border.Shadow>
+                            <Shadow Brush="Black" Opacity="0.08" Radius="18" Offset="0,8" />
+                        </Border.Shadow>
+                        <VerticalStackLayout Padding="24"
+                                             Spacing="18">
+                            <Image Source="pasta_plate.png"
+                                   HeightRequest="230"
+                                   Aspect="AspectFill" />
+                            <Label Text="Coming soon"
+                                   FontFamily="OpenSansSemibold"
+                                   FontAttributes="Bold,Italic"
+                                   FontSize="36"
+                                   TextColor="{StaticResource Primary}" />
+                            <Label Text="Weekly planning will be connected after recipes and Supabase auth are in place."
+                                   FontSize="14"
+                                   TextColor="{StaticResource OnSurfaceVariant}"
+                                   LineBreakMode="WordWrap" />
+                        </VerticalStackLayout>
+                    </Border>
+                </VerticalStackLayout>
+            </Grid>
+        </ScrollView>
+    </Grid>
+</ContentPage>

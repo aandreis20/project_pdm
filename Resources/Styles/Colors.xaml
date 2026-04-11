@@ -5,12 +5,30 @@
 
     <!-- Note: For Android please see also Platforms\Android\Resources\values\colors.xml -->
 
-    <Color x:Key="Primary">#512BD4</Color>
-    <Color x:Key="PrimaryDark">#ac99ea</Color>
-    <Color x:Key="PrimaryDarkText">#242424</Color>
-    <Color x:Key="Secondary">#DFD8F7</Color>
-    <Color x:Key="SecondaryDarkText">#9880e5</Color>
-    <Color x:Key="Tertiary">#2B0B98</Color>
+    <Color x:Key="Primary">#0F5238</Color>
+    <Color x:Key="PrimaryDark">#95D4B3</Color>
+    <Color x:Key="PrimaryDarkText">#002114</Color>
+    <Color x:Key="Secondary">#944A00</Color>
+    <Color x:Key="SecondaryDarkText">#713700</Color>
+    <Color x:Key="Tertiary">#693D00</Color>
+    <Color x:Key="PrimaryContainer">#2D6A4F</Color>
+    <Color x:Key="PrimaryFixed">#B1F0CE</Color>
+    <Color x:Key="PrimaryFixedDim">#95D4B3</Color>
+    <Color x:Key="SecondaryFixed">#FFDCC5</Color>
+    <Color x:Key="SecondaryContainer">#FC8F34</Color>
+    <Color x:Key="TertiaryFixed">#FFDCBC</Color>
+    <Color x:Key="Surface">#FAF9F8</Color>
+    <Color x:Key="SurfaceBright">#FAF9F8</Color>
+    <Color x:Key="SurfaceContainerLowest">#FFFFFF</Color>
+    <Color x:Key="SurfaceContainerLow">#F4F3F2</Color>
+    <Color x:Key="SurfaceContainer">#EEEEED</Color>
+    <Color x:Key="SurfaceContainerHigh">#E9E8E7</Color>
+    <Color x:Key="SurfaceContainerHighest">#E3E2E1</Color>
+    <Color x:Key="InverseSurface">#2F3130</Color>
+    <Color x:Key="OnSurface">#1A1C1C</Color>
+    <Color x:Key="OnSurfaceVariant">#404943</Color>
+    <Color x:Key="Outline">#707973</Color>
+    <Color x:Key="OutlineVariant">#BFC9C1</Color>
 
     <Color x:Key="White">White</Color>
     <Color x:Key="Black">Black</Color>
@@ -28,7 +46,18 @@
     <Color x:Key="Gray950">#141414</Color>
 
     <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}"/>
+    <SolidColorBrush x:Key="PrimaryContainerBrush" Color="{StaticResource PrimaryContainer}"/>
+    <SolidColorBrush x:Key="PrimaryFixedBrush" Color="{StaticResource PrimaryFixed}"/>
     <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}"/>
+    <SolidColorBrush x:Key="SurfaceBrush" Color="{StaticResource Surface}"/>
+    <SolidColorBrush x:Key="SurfaceContainerLowestBrush" Color="{StaticResource SurfaceContainerLowest}"/>
+    <SolidColorBrush x:Key="SurfaceContainerLowBrush" Color="{StaticResource SurfaceContainerLow}"/>
+    <SolidColorBrush x:Key="SurfaceContainerHighBrush" Color="{StaticResource SurfaceContainerHigh}"/>
+    <SolidColorBrush x:Key="SurfaceContainerHighestBrush" Color="{StaticResource SurfaceContainerHighest}"/>
+    <SolidColorBrush x:Key="OnSurfaceBrush" Color="{StaticResource OnSurface}"/>
+    <SolidColorBrush x:Key="OnSurfaceVariantBrush" Color="{StaticResource OnSurfaceVariant}"/>
+    <SolidColorBrush x:Key="OutlineBrush" Color="{StaticResource Outline}"/>
+    <SolidColorBrush x:Key="OutlineVariantBrush" Color="{StaticResource OutlineVariant}"/>
     <SolidColorBrush x:Key="TertiaryBrush" Color="{StaticResource Tertiary}"/>
     <SolidColorBrush x:Key="WhiteBrush" Color="{StaticResource White}"/>
     <SolidColorBrush x:Key="BlackBrush" Color="{StaticResource Black}"/>

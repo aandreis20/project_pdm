@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:RecipesApp.ViewModels"
+             x:Class="RecipesApp.Views.ProfilePage"
+             x:DataType="vm:ProfilePageViewModel"
+             BackgroundColor="{StaticResource Surface}">
+
+    <Grid RowDefinitions="*">
+        <Border WidthRequest="320"
+                HeightRequest="320"
+                Margin="-120,-100,0,0"
+                HorizontalOptions="Start"
+                VerticalOptions="Start"
+                Opacity="0.14"
+                StrokeThickness="0"
+                StrokeShape="RoundRectangle 160">
+            <Image Source="kitchen_tools.png" Aspect="AspectFill" />
+        </Border>
+
+        <ScrollView VerticalScrollBarVisibility="Never">
+            <Grid Padding="24,42,24,110">
+                <VerticalStackLayout MaximumWidthRequest="520"
+                                     HorizontalOptions="Center"
+                                     Spacing="28">
+                    <VerticalStackLayout Spacing="12"
+                                         HorizontalOptions="Center">
+                        <Border WidthRequest="96"
+                                HeightRequest="96"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 48"
+                                BackgroundColor="{StaticResource Primary}">
+                            <Label Text="&#xE7FD;"
+                                   FontFamily="MaterialIcons"
+                                   FontSize="46"
+                                   TextColor="White"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center" />
+                        </Border>
+
+                        <Label Text="Chef Profile"
+                               FontFamily="OpenSansSemibold"
+                               FontAttributes="Bold,Italic"
+                               FontSize="36"
+                               TextColor="{StaticResource Primary}"
+                               HorizontalTextAlignment="Center" />
+                        <Label Text="Your account area is ready for Supabase user data."
+                               FontSize="14"
+                               TextColor="{StaticResource OnSurfaceVariant}"
+                               HorizontalTextAlignment="Center" />
+                    </VerticalStackLayout>
+
+                    <Border StrokeThickness="0"
+                            StrokeShape="RoundRectangle 14"
+                            BackgroundColor="{StaticResource SurfaceContainerLowest}">
+                        <Border.Shadow>
+                            <Shadow Brush="Black" Opacity="0.08" Radius="18" Offset="0,8" />
+                        </Border.Shadow>
+                        <VerticalStackLayout Padding="24"
+                                             Spacing="16">
+                            <Grid ColumnDefinitions="Auto,*"
+                                  ColumnSpacing="14">
+                                <Label Text="&#xE0E1;"
+                                       FontFamily="MaterialIcons"
+                                       FontSize="24"
+                                       TextColor="{StaticResource Primary}"
+                                       VerticalTextAlignment="Center" />
+                                <VerticalStackLayout Grid.Column="1"
+                                                     Spacing="2">
+                                    <Label Text="Email"
+                                           FontFamily="OpenSansSemibold"
+                                           FontSize="12"
+                                           CharacterSpacing="1.2"
+                                           TextColor="{StaticResource Outline}" />
+                                    <Label Text="chef@editorialkitchen.com"
+                                           FontSize="15"
+                                           TextColor="{StaticResource OnSurface}" />
+                                </VerticalStackLayout>
+                            </Grid>
+
+                            <Grid ColumnDefinitions="Auto,*"
+                                  ColumnSpacing="14">
+                                <Label Text="&#xE56C;"
+                                       FontFamily="MaterialIcons"
+                                       FontSize="24"
+                                       TextColor="{StaticResource Primary}"
+                                       VerticalTextAlignment="Center" />
+                                <VerticalStackLayout Grid.Column="1"
+                                                     Spacing="2">
+                                    <Label Text="Preferences"
+                                           FontFamily="OpenSansSemibold"
+                                           FontSize="12"
+                                           CharacterSpacing="1.2"
+                                           TextColor="{StaticResource Outline}" />
+                                    <Label Text="Editorial recipes, seasonal menus"
+                                           FontSize="15"
+                                           TextColor="{StaticResource OnSurface}" />
+                                </VerticalStackLayout>
+                            </Grid>
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border HeightRequest="58"
+                            StrokeThickness="0"
+                            StrokeShape="RoundRectangle 29"
+                            BackgroundColor="{StaticResource Primary}">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding LogoutCommand}" />
+                        </Border.GestureRecognizers>
+                        <HorizontalStackLayout Spacing="8"
+                                               HorizontalOptions="Center"
+                                               VerticalOptions="Center">
+                            <Label Text="Log Out"
+                                   FontFamily="OpenSansSemibold"
+                                   FontAttributes="Bold"
+                                   FontSize="17"
+                                   TextColor="White" />
+                            <Label Text="&#xE9BA;"
+                                   FontFamily="MaterialIcons"
+                                   FontSize="22"
+                                   TextColor="White" />
+                        </HorizontalStackLayout>
+                    </Border>
+                </VerticalStackLayout>
+            </Grid>
+        </ScrollView>
+    </Grid>
+</ContentPage>
