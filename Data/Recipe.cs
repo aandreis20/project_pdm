@@ -29,4 +29,10 @@ public sealed class Recipe : BaseModel
 
     [Column("user_id")]
     public Guid UserId { get; set; }
+
+    [Column("prep_time")]
+    public int? PrepTime { get; set; }
+
+    [Column("calories")]
+    public int? Calories { get; set; }
 }

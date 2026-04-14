@@ -16,10 +16,14 @@ public partial class RecipesPage : ContentPage
         base.OnAppearing();
 
         if (BindingContext is RecipesPageViewModel viewModel &&
-            viewModel.Recipes.Count == 0 &&
             viewModel.LoadRecipesCommand.CanExecute(null))
         {
             viewModel.LoadRecipesCommand.Execute(null);
         }
+    }
+
+    private async void OnAddRecipeClicked(object sender, TappedEventArgs e)
+    { 
+        await Shell.Current.GoToAsync("AddRecipePage");
     }
 }

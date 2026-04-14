@@ -31,38 +31,43 @@ public partial class RecipesPageViewModel : ObservableObject
     [RelayCommand]
     private async Task LoadRecipesAsync()
     {
-        if (IsBusy)
-        {
-            return;
-        }
-
-        ErrorMessage = string.Empty;
-        IsBusy = true;
+        if (IsBusy) return;
 
         try
         {
+            IsBusy = true;
+            ErrorMessage = string.Empty;
+
             var recipesFromSupabase = await recipeService.GetRecipesAsync();
-            Recipes = new ObservableCollection<RecipeUi>(
-                recipesFromSupabase.Select(recipe => new RecipeUi
-                {
-                    Title = recipe.Title,
-                    Description = string.IsNullOrWhiteSpace(recipe.Description)
-                        ? "No description yet."
-                        : recipe.Description,
-                    Ingredients = recipe.Ingredients ?? string.Empty,
-                    Category = string.IsNullOrWhiteSpace(recipe.Category)
-                        ? "Recipe"
-                        : recipe.Category,
-                    ImageUrl = string.IsNullOrWhiteSpace(recipe.ImageUrl)
-                        ? "toast_egg.png"
-                        : recipe.ImageUrl
-                }));
+
+            var allRecipes = recipesFromSupabase.Select(recipe => new RecipeUi
+            {
+                Id = recipe.Id,
+                Title = recipe.Title,
+                Category = recipe.Category ?? string.Empty,
+                Description = recipe.Description ?? string.Empty,
+                Ingredients = recipe.Ingredients ?? string.Empty,
+                ImageUrl = string.IsNullOrWhiteSpace(recipe.ImageUrl) ? "toast_egg.png" : recipe.ImageUrl,
+                PrepTime = recipe.PrepTime,
+                Calories = recipe.Calories
+            }).ToList();
+
+            var random = new Random();
+            var dailyInspirations = new List<RecipeUi>();
+
+            var breakfast = allRecipes.Where(r => r.Category == "Mic dejun").OrderBy(x => random.Next()).FirstOrDefault();
+            var lunch = allRecipes.Where(r => r.Category == "Prânz").OrderBy(x => random.Next()).FirstOrDefault();
+            var dinner = allRecipes.Where(r => r.Category == "Cină").OrderBy(x => random.Next()).FirstOrDefault();
+
+            if (breakfast != null) dailyInspirations.Add(breakfast);
+            if (lunch != null) dailyInspirations.Add(lunch);
+            if (dinner != null) dailyInspirations.Add(dinner);
+
+            Recipes = new ObservableCollection<RecipeUi>(dailyInspirations);
         }
-        catch (Exception exception)
+        catch (Exception ex)
         {
-            ErrorMessage = string.IsNullOrWhiteSpace(exception.Message)
-                ? "Retetele nu au putut fi incarcate din Supabase."
-                : exception.Message;
+            ErrorMessage = $"Failed to load recipes: {ex.Message}";
         }
         finally
         {
@@ -74,5 +79,19 @@ public partial class RecipesPageViewModel : ObservableObject
     private async Task GoToLoginAsync()
     {
         await Shell.Current.GoToAsync("//LoginPage");
+    }
+
+    [RelayCommand]
+    private async Task EditRecipeAsync(RecipeUi selectedRecipe)
+    {
+        if (selectedRecipe == null) return;
+
+        await Shell.Current.GoToAsync($"AddRecipePage?recipeId={selectedRecipe.Id}");
+    }
+
+    [RelayCommand]
+    private async Task GoToAllRecipesAsync()
+    {
+        await Shell.Current.GoToAsync("AllRecipesPage");
     }
 }
