@@ -7,10 +7,11 @@
     Title="RecipesApp"
     FlyoutBehavior="Disabled"
     Shell.NavBarIsVisible="False"
-    Shell.TabBarBackgroundColor="{StaticResource SurfaceContainerLowest}"
-    Shell.TabBarForegroundColor="{StaticResource Primary}"
-    Shell.TabBarTitleColor="{StaticResource Primary}"
-    Shell.TabBarUnselectedColor="{StaticResource Outline}">
+    
+    Shell.TabBarBackgroundColor="{AppThemeBinding Light={StaticResource SurfaceContainerLowest}, Dark={StaticResource Gray900}}"
+    Shell.TabBarForegroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"
+    Shell.TabBarTitleColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"
+    Shell.TabBarUnselectedColor="{AppThemeBinding Light={StaticResource Outline}, Dark={StaticResource Gray600}}">
 
     <ShellContent
         Route="LoginPage"
@@ -18,12 +19,13 @@
         ContentTemplate="{DataTemplate views:LoginPage}" />
 
     <TabBar Route="AppTabs">
+
         <ShellContent
             Title="Recipes"
             ContentTemplate="{DataTemplate views:RecipesPage}"
             Route="RecipesPage">
             <ShellContent.Icon>
-                <FontImageSource Glyph="&#xE561;" FontFamily="MaterialIcons" Color="{StaticResource Primary}" />
+                <FontImageSource Glyph="&#xE561;" FontFamily="MaterialIcons" />
             </ShellContent.Icon>
         </ShellContent>
 
@@ -32,7 +34,7 @@
             ContentTemplate="{DataTemplate views:PlannerPage}"
             Route="PlannerPage">
             <ShellContent.Icon>
-                <FontImageSource Glyph="&#xEBCC;" FontFamily="MaterialIcons" Color="{StaticResource Primary}" />
+                <FontImageSource Glyph="&#xEBCC;" FontFamily="MaterialIcons" />
             </ShellContent.Icon>
         </ShellContent>
 
@@ -41,9 +43,10 @@
             ContentTemplate="{DataTemplate views:ProfilePage}"
             Route="ProfilePage">
             <ShellContent.Icon>
-                <FontImageSource Glyph="&#xE7FD;" FontFamily="MaterialIcons" Color="{StaticResource Primary}" />
+                <FontImageSource Glyph="&#xE7FD;" FontFamily="MaterialIcons" />
             </ShellContent.Icon>
         </ShellContent>
+
     </TabBar>
 
 </Shell>

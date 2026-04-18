@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using RecipesApp.Services;
 using RecipesApp.ViewModels;
+using RecipesApp.Views;
 
 namespace RecipesApp;
 
@@ -27,6 +28,7 @@ public static class MauiProgram
         builder.Services.AddSingleton<ISupabaseClientProvider, SupabaseClientProvider>();
         builder.Services.AddSingleton<ISupabaseAuthService, SupabaseAuthService>();
         builder.Services.AddSingleton<IRecipeService, SupabaseRecipeService>();
+        builder.Services.AddSingleton<ISettingsService, SettingsService>();
         builder.Services.AddTransient<LoginPageViewModel>();
         builder.Services.AddTransient<SignUpPageViewModel>();
         builder.Services.AddTransient<RecipesPageViewModel>();
@@ -36,6 +38,9 @@ public static class MauiProgram
         builder.Services.AddTransient<Views.AddRecipePage>();
         builder.Services.AddTransient<AllRecipesViewModel>();
         builder.Services.AddTransient<Views.AllRecipesPage>();
+        builder.Services.AddTransient<SettingsViewModel>();
+        builder.Services.AddTransient<SettingsPage>();
+
 
         var app = builder.Build();
         Services = app.Services;

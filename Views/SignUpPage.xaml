@@ -6,7 +6,7 @@
              x:DataType="vm:SignUpPageViewModel"
              Shell.TabBarIsVisible="False"
              Shell.NavBarIsVisible="False"
-             BackgroundColor="{StaticResource Surface}">
+             BackgroundColor="{AppThemeBinding Light={StaticResource Surface}, Dark={StaticResource OffBlack}}">
 
     <Grid RowDefinitions="*">
         <Border WidthRequest="340"
@@ -14,7 +14,7 @@
                 Margin="0,-130,-120,0"
                 HorizontalOptions="End"
                 VerticalOptions="Start"
-                BackgroundColor="{StaticResource PrimaryFixed}"
+                BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryFixed}, Dark={StaticResource PrimaryDark}}"
                 Opacity="0.18"
                 StrokeThickness="0"
                 StrokeShape="RoundRectangle 170" />
@@ -24,7 +24,7 @@
                 Margin="-180,0,0,0"
                 HorizontalOptions="Start"
                 VerticalOptions="Center"
-                BackgroundColor="{StaticResource SecondaryFixed}"
+                BackgroundColor="{AppThemeBinding Light={StaticResource SecondaryFixed}, Dark={StaticResource Tertiary}}"
                 Opacity="0.16"
                 StrokeThickness="0"
                 StrokeShape="RoundRectangle 190" />
@@ -41,12 +41,12 @@
         </Border>
 
         <ScrollView VerticalScrollBarVisibility="Never">
-            <Grid Padding="28,40,28,100"
-                  MinimumHeightRequest="760">
+            <Grid Padding="28,40,28,100" MinimumHeightRequest="760">
                 <VerticalStackLayout Spacing="0"
                                      MaximumWidthRequest="520"
                                      HorizontalOptions="Center"
                                      VerticalOptions="Center">
+
                     <VerticalStackLayout Spacing="18"
                                          HorizontalOptions="Center"
                                          Margin="0,0,0,34">
@@ -66,33 +66,34 @@
                                    FontFamily="OpenSansSemibold"
                                    FontAttributes="Bold,Italic"
                                    FontSize="40"
-                                   TextColor="{StaticResource Primary}"
+                                   TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"
                                    HorizontalTextAlignment="Center" />
                             <Label Text="Create your account to start your culinary journey."
                                    FontSize="14"
-                                   TextColor="{StaticResource OnSurfaceVariant}"
+                                   TextColor="{AppThemeBinding Light={StaticResource OnSurfaceVariant}, Dark={StaticResource Gray400}}"
                                    HorizontalTextAlignment="Center" />
                         </VerticalStackLayout>
                     </VerticalStackLayout>
 
                     <VerticalStackLayout Spacing="18">
+
                         <VerticalStackLayout Spacing="7">
                             <Label Text="FULL NAME"
                                    FontFamily="OpenSansSemibold"
                                    FontSize="11"
                                    CharacterSpacing="1.4"
-                                   TextColor="{StaticResource Primary}"
+                                   TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"
                                    Margin="4,0,0,0" />
                             <Border HeightRequest="58"
                                     StrokeThickness="0"
                                     StrokeShape="RoundRectangle 12"
-                                    BackgroundColor="{StaticResource SurfaceContainerHighest}">
+                                    BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceContainerHighest}, Dark={StaticResource Gray900}}">
                                 <Entry Text="{Binding FullName}"
                                        Placeholder="Alice Waters"
                                        FontSize="14"
                                        Margin="15,0"
-                                       TextColor="{StaticResource OnSurface}"
-                                       PlaceholderColor="{StaticResource Outline}" />
+                                       TextColor="{AppThemeBinding Light={StaticResource OnSurface}, Dark={StaticResource Surface}}"
+                                       PlaceholderColor="{AppThemeBinding Light={StaticResource Outline}, Dark={StaticResource Gray600}}" />
                             </Border>
                         </VerticalStackLayout>
 
@@ -101,64 +102,62 @@
                                    FontFamily="OpenSansSemibold"
                                    FontSize="11"
                                    CharacterSpacing="1.4"
-                                   TextColor="{StaticResource Primary}"
+                                   TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"
                                    Margin="4,0,0,0" />
                             <Border HeightRequest="58"
                                     StrokeThickness="0"
                                     StrokeShape="RoundRectangle 12"
-                                    BackgroundColor="{StaticResource SurfaceContainerHighest}">
+                                    BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceContainerHighest}, Dark={StaticResource Gray900}}">
                                 <Entry Text="{Binding Email}"
                                        Placeholder="alice@editorialkitchen.com"
                                        Keyboard="Email"
                                        FontSize="14"
                                        Margin="15,0"
-                                       TextColor="{StaticResource OnSurface}"
-                                       PlaceholderColor="{StaticResource Outline}" />
+                                       TextColor="{AppThemeBinding Light={StaticResource OnSurface}, Dark={StaticResource Surface}}"
+                                       PlaceholderColor="{AppThemeBinding Light={StaticResource Outline}, Dark={StaticResource Gray600}}" />
                             </Border>
                         </VerticalStackLayout>
 
-                        <Grid ColumnDefinitions="*,*"
-                              ColumnSpacing="14">
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="14">
                             <VerticalStackLayout Spacing="7">
                                 <Label Text="PASSWORD"
                                        FontFamily="OpenSansSemibold"
                                        FontSize="11"
                                        CharacterSpacing="1.4"
-                                       TextColor="{StaticResource Primary}"
+                                       TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"
                                        Margin="4,0,0,0" />
                                 <Border HeightRequest="58"
                                         StrokeThickness="0"
                                         StrokeShape="RoundRectangle 12"
-                                        BackgroundColor="{StaticResource SurfaceContainerHighest}">
+                                        BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceContainerHighest}, Dark={StaticResource Gray900}}">
                                     <Entry Text="{Binding Password}"
                                            Placeholder="Password"
                                            IsPassword="True"
                                            FontSize="14"
                                            Margin="15,0"
-                                           TextColor="{StaticResource OnSurface}"
-                                           PlaceholderColor="{StaticResource Outline}" />
+                                           TextColor="{AppThemeBinding Light={StaticResource OnSurface}, Dark={StaticResource Surface}}"
+                                           PlaceholderColor="{AppThemeBinding Light={StaticResource Outline}, Dark={StaticResource Gray600}}" />
                                 </Border>
                             </VerticalStackLayout>
 
-                            <VerticalStackLayout Grid.Column="1"
-                                                 Spacing="7">
+                            <VerticalStackLayout Grid.Column="1" Spacing="7">
                                 <Label Text="CONFIRM"
                                        FontFamily="OpenSansSemibold"
                                        FontSize="11"
                                        CharacterSpacing="1.4"
-                                       TextColor="{StaticResource Primary}"
+                                       TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"
                                        Margin="4,0,0,0" />
                                 <Border HeightRequest="58"
                                         StrokeThickness="0"
                                         StrokeShape="RoundRectangle 12"
-                                        BackgroundColor="{StaticResource SurfaceContainerHighest}">
+                                        BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceContainerHighest}, Dark={StaticResource Gray900}}">
                                     <Entry Text="{Binding ConfirmPassword}"
                                            Placeholder="Confirm"
                                            IsPassword="True"
                                            FontSize="14"
                                            Margin="15,0"
-                                           TextColor="{StaticResource OnSurface}"
-                                           PlaceholderColor="{StaticResource Outline}" />
+                                           TextColor="{AppThemeBinding Light={StaticResource OnSurface}, Dark={StaticResource Surface}}"
+                                           PlaceholderColor="{AppThemeBinding Light={StaticResource Outline}, Dark={StaticResource Gray600}}" />
                                 </Border>
                             </VerticalStackLayout>
                         </Grid>
@@ -169,12 +168,12 @@
                                 Margin="0,8,0,0">
                             <Border.Background>
                                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                    <GradientStop Color="{StaticResource Primary}" Offset="0" />
-                                    <GradientStop Color="{StaticResource PrimaryContainer}" Offset="1" />
+                                    <GradientStop Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" Offset="0" />
+                                    <GradientStop Color="{AppThemeBinding Light={StaticResource PrimaryContainer}, Dark={StaticResource Primary}}" Offset="1" />
                                 </LinearGradientBrush>
                             </Border.Background>
                             <Border.Shadow>
-                                <Shadow Brush="{StaticResource Primary}" Opacity="0.18" Radius="18" Offset="0,8" />
+                                <Shadow Brush="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" Opacity="0.18" Radius="18" Offset="0,8" />
                             </Border.Shadow>
                             <Border.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding SignUpCommand}" />
@@ -186,17 +185,17 @@
                                        FontFamily="OpenSansSemibold"
                                        FontAttributes="Bold"
                                        FontSize="17"
-                                       TextColor="White" />
+                                       TextColor="{AppThemeBinding Light=White, Dark={StaticResource PrimaryDarkText}}" />
                                 <Label Text="&#xE5C8;"
                                        FontFamily="MaterialIcons"
                                        FontSize="22"
-                                       TextColor="White" />
+                                       TextColor="{AppThemeBinding Light=White, Dark={StaticResource PrimaryDarkText}}" />
                             </HorizontalStackLayout>
                         </Border>
 
                         <ActivityIndicator IsRunning="{Binding IsBusy}"
                                            IsVisible="{Binding IsBusy}"
-                                           Color="{StaticResource Primary}"
+                                           Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"
                                            HorizontalOptions="Center" />
 
                         <Label Text="{Binding ErrorMessage}"
@@ -209,7 +208,7 @@
                         <Label Text="{Binding InfoMessage}"
                                IsVisible="{Binding HasInfo}"
                                FontSize="13"
-                               TextColor="{StaticResource Primary}"
+                               TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"
                                HorizontalTextAlignment="Center"
                                LineBreakMode="WordWrap" />
                     </VerticalStackLayout>
@@ -219,17 +218,18 @@
                                            HorizontalOptions="Center">
                         <Label Text="Already have an account?"
                                FontSize="14"
-                               TextColor="{StaticResource OnSurfaceVariant}" />
+                               TextColor="{AppThemeBinding Light={StaticResource OnSurfaceVariant}, Dark={StaticResource Gray400}}" />
                         <Label Text="Sign In"
                                FontFamily="OpenSansSemibold"
                                FontAttributes="Bold"
                                FontSize="14"
-                               TextColor="{StaticResource Primary}">
+                               TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding GoToLoginCommand}" />
                             </Label.GestureRecognizers>
                         </Label>
                     </HorizontalStackLayout>
+
                 </VerticalStackLayout>
             </Grid>
         </ScrollView>

@@ -79,15 +79,20 @@
       <Folder Include="Data\" />
       <Folder Include="DTOs\" />
       <Folder Include="Helpers\" />
-      <Folder Include="Services\" />
       <Folder Include="ViewModels\UIState\" />
     </ItemGroup>
 
     <ItemGroup>
+      <MauiXaml Update="Views\AddRecipePage - Copy.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </MauiXaml>
       <MauiXaml Update="Views\AddRecipePage.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
       <MauiXaml Update="Views\AllRecipesPage.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </MauiXaml>
+      <MauiXaml Update="Views\SettingsPage.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
     </ItemGroup>

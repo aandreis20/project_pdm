@@ -6,6 +6,7 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.Controls;
 using RecipesApp.Services;
 using RecipesApp.ViewModels.UIState;
+using RecipesApp.Views;
 
 public partial class RecipesPageViewModel : ObservableObject
 {
@@ -93,5 +94,12 @@ public partial class RecipesPageViewModel : ObservableObject
     private async Task GoToAllRecipesAsync()
     {
         await Shell.Current.GoToAsync("AllRecipesPage");
+    }
+
+    [RelayCommand]
+    private async Task GoToSettingsAsync()
+    {
+        // Shell.Current.GoToAsync uses string-based URI routing
+        await Shell.Current.GoToAsync(nameof(SettingsPage));
     }
 }

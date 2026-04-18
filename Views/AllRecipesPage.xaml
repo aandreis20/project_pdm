@@ -6,68 +6,120 @@
              x:Class="RecipesApp.Views.AllRecipesPage"
              x:DataType="vm:AllRecipesViewModel"
              Shell.NavBarIsVisible="False"
-             BackgroundColor="{StaticResource Surface}">
+             BackgroundColor="{AppThemeBinding Light={StaticResource Surface}, Dark={StaticResource OffBlack}}">
 
     <Grid RowDefinitions="Auto, Auto, *" Padding="20,20,20,0">
 
         <Grid ColumnDefinitions="Auto, *, Auto" VerticalOptions="Center" Margin="0,0,0,15">
-            <Label Text="&#xE5CB;" FontFamily="MaterialIcons" FontSize="32" TextColor="{StaticResource Primary}" VerticalTextAlignment="Center">
+            <Label Text="&#xE5CB;" 
+                   FontFamily="MaterialIcons" 
+                   FontSize="32" 
+                   TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" 
+                   VerticalTextAlignment="Center">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding GoBackCommand}" />
                 </Label.GestureRecognizers>
             </Label>
-            <Label Grid.Column="1" Text="All Recipes" FontFamily="OpenSansSemibold" FontAttributes="Bold,Italic" FontSize="22" TextColor="{StaticResource Primary}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            <Label Grid.Column="1" 
+                   Text="All Recipes" 
+                   FontFamily="OpenSansSemibold" 
+                   FontAttributes="Bold,Italic" 
+                   FontSize="22" 
+                   TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" 
+                   HorizontalTextAlignment="Center" 
+                   VerticalTextAlignment="Center" />
             <Border Grid.Column="2" WidthRequest="32" HeightRequest="32" StrokeThickness="0" BackgroundColor="Transparent"/>
         </Grid>
 
         <Grid Grid.Row="1" ColumnDefinitions="*, *" ColumnSpacing="15" Margin="0,0,0,20">
             <VerticalStackLayout Spacing="5">
-                <Label Text="CATEGORIE" FontSize="11" FontFamily="OpenSansSemibold" TextColor="{StaticResource Primary}" />
-                <Border StrokeThickness="0" StrokeShape="RoundRectangle 8" BackgroundColor="{StaticResource SurfaceContainerHighest}">
-                    <Picker ItemsSource="{Binding FilterCategories}" SelectedItem="{Binding SelectedCategory}" FontSize="13" TextColor="{StaticResource OnSurface}" Margin="8,0" />
+                <Label Text="CATEGORIE" FontSize="11" FontFamily="OpenSansSemibold" TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+                <Border StrokeThickness="0" StrokeShape="RoundRectangle 8" BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceContainerHighest}, Dark={StaticResource Gray900}}">
+                    <Picker ItemsSource="{Binding FilterCategories}" 
+                            SelectedItem="{Binding SelectedCategory}" 
+                            FontSize="13" 
+                            TextColor="{AppThemeBinding Light={StaticResource OnSurface}, Dark={StaticResource Surface}}" 
+                            TitleColor="{AppThemeBinding Light={StaticResource Outline}, Dark={StaticResource Gray400}}"
+                            Margin="8,0" />
                 </Border>
             </VerticalStackLayout>
 
             <VerticalStackLayout Grid.Column="1" Spacing="5">
-                <Label Text="SORTEAZĂ DUPĂ" FontSize="11" FontFamily="OpenSansSemibold" TextColor="{StaticResource Primary}" />
-                <Border StrokeThickness="0" StrokeShape="RoundRectangle 8" BackgroundColor="{StaticResource SurfaceContainerHighest}">
-                    <Picker ItemsSource="{Binding SortOptions}" SelectedItem="{Binding SelectedSort}" FontSize="13" TextColor="{StaticResource OnSurface}" Margin="8,0" />
+                <Label Text="SORTEAZĂ DUPĂ" FontSize="11" FontFamily="OpenSansSemibold" TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+                <Border StrokeThickness="0" StrokeShape="RoundRectangle 8" BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceContainerHighest}, Dark={StaticResource Gray900}}">
+                    <Picker ItemsSource="{Binding SortOptions}" 
+                            SelectedItem="{Binding SelectedSort}" 
+                            FontSize="13" 
+                            TextColor="{AppThemeBinding Light={StaticResource OnSurface}, Dark={StaticResource Surface}}" 
+                            TitleColor="{AppThemeBinding Light={StaticResource Outline}, Dark={StaticResource Gray400}}"
+                            Margin="8,0" />
                 </Border>
             </VerticalStackLayout>
         </Grid>
 
-        <ActivityIndicator Grid.Row="2" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" Color="{StaticResource Primary}" HorizontalOptions="Center" VerticalOptions="Center" />
+        <ActivityIndicator Grid.Row="2" 
+                           IsRunning="{Binding IsBusy}" 
+                           IsVisible="{Binding IsBusy}" 
+                           Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" 
+                           HorizontalOptions="Center" 
+                           VerticalOptions="Center" />
 
         <CollectionView Grid.Row="2" ItemsSource="{Binding DisplayedRecipes}" SelectionMode="None">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="state:RecipeUi">
-                    <Border Margin="0,0,0,24" StrokeThickness="0" StrokeShape="RoundRectangle 24" BackgroundColor="{StaticResource SurfaceContainerLowest}">
+                    <Border Margin="0,0,0,24" 
+                            StrokeThickness="0" 
+                            StrokeShape="RoundRectangle 24" 
+                            BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceContainerLowest}, Dark={StaticResource Gray900}}">
+
                         <Border.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:AllRecipesViewModel}}, Path=EditRecipeCommand}" CommandParameter="{Binding .}" />
                         </Border.GestureRecognizers>
+
                         <Border.Shadow>
                             <Shadow Brush="Black" Opacity="0.1" Radius="12" Offset="0,6" />
                         </Border.Shadow>
+
                         <VerticalStackLayout Spacing="0">
                             <Grid HeightRequest="220">
                                 <Image Source="{Binding ImageUrl}" Aspect="AspectFill" />
-                                <Border HorizontalOptions="Start" VerticalOptions="End" Margin="16" Padding="10,6" StrokeThickness="0" StrokeShape="RoundRectangle 6" BackgroundColor="{StaticResource Primary}">
-                                    <Label Text="{Binding Category}" TextColor="White" FontSize="10" FontFamily="OpenSansSemibold" TextTransform="Uppercase" />
+
+                                <Border HorizontalOptions="Start" 
+                                        VerticalOptions="End" 
+                                        Margin="16" 
+                                        Padding="10,6" 
+                                        StrokeThickness="0" 
+                                        StrokeShape="RoundRectangle 6" 
+                                        BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}">
+                                    <Label Text="{Binding Category}" 
+                                           TextColor="{AppThemeBinding Light=White, Dark={StaticResource PrimaryDarkText}}" 
+                                           FontSize="10" 
+                                           FontFamily="OpenSansSemibold" 
+                                           TextTransform="Uppercase" />
                                 </Border>
                             </Grid>
+
                             <VerticalStackLayout Padding="20" Spacing="8">
-                                <Label Text="{Binding Title}" FontFamily="OpenSansSemibold" FontSize="20" TextColor="{StaticResource OnSurface}" LineBreakMode="TailTruncation" MaxLines="2" />
+                                <Label Text="{Binding Title}" 
+                                       FontFamily="OpenSansSemibold" 
+                                       FontSize="20" 
+                                       TextColor="{AppThemeBinding Light={StaticResource OnSurface}, Dark={StaticResource Surface}}" 
+                                       LineBreakMode="TailTruncation" 
+                                       MaxLines="2" />
+
                                 <HorizontalStackLayout Spacing="16" Margin="0,4,0,0">
                                     <HorizontalStackLayout Spacing="4">
-                                        <Label Text="&#xE192;" FontFamily="MaterialIcons" FontSize="14" TextColor="{StaticResource Outline}" VerticalOptions="Center"/>
-                                        <Label Text="{Binding PrepTime, StringFormat='{0} mins'}" FontSize="12" TextColor="{StaticResource Outline}" VerticalOptions="Center"/>
+                                        <Label Text="&#xE192;" FontFamily="MaterialIcons" FontSize="14" TextColor="{AppThemeBinding Light={StaticResource Outline}, Dark={StaticResource Gray400}}" VerticalOptions="Center"/>
+                                        <Label Text="{Binding PrepTime, StringFormat='{0} mins'}" FontSize="12" TextColor="{AppThemeBinding Light={StaticResource Outline}, Dark={StaticResource Gray400}}" VerticalOptions="Center"/>
                                     </HorizontalStackLayout>
+
                                     <HorizontalStackLayout Spacing="4">
-                                        <Label Text="&#xE3E7;" FontFamily="MaterialIcons" FontSize="14" TextColor="{StaticResource Outline}" VerticalOptions="Center"/>
-                                        <Label Text="{Binding Calories, StringFormat='{0} kcal'}" FontSize="12" TextColor="{StaticResource Outline}" VerticalOptions="Center"/>
+                                        <Label Text="&#xE3E7;" FontFamily="MaterialIcons" FontSize="14" TextColor="{AppThemeBinding Light={StaticResource Outline}, Dark={StaticResource Gray400}}" VerticalOptions="Center"/>
+                                        <Label Text="{Binding Calories, StringFormat='{0} kcal'}" FontSize="12" TextColor="{AppThemeBinding Light={StaticResource Outline}, Dark={StaticResource Gray400}}" VerticalOptions="Center"/>
                                     </HorizontalStackLayout>
                                 </HorizontalStackLayout>
                             </VerticalStackLayout>
+
                         </VerticalStackLayout>
                     </Border>
                 </DataTemplate>

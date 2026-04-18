@@ -5,26 +5,45 @@
              x:Class="RecipesApp.Views.AddRecipePage"
              x:DataType="vm:AddRecipeViewModel"
              Shell.NavBarIsVisible="False"
-             BackgroundColor="{StaticResource Surface}">
+             BackgroundColor="{AppThemeBinding Light={StaticResource Surface}, Dark={StaticResource OffBlack}}">
 
     <Grid RowDefinitions="Auto, *, Auto" Padding="20,20,20,0">
 
         <Grid ColumnDefinitions="Auto, *, Auto" VerticalOptions="Center" Margin="0,0,0,20">
-            <Label Text="&#xE5CD;" FontFamily="MaterialIcons" FontSize="28" TextColor="{StaticResource Primary}" VerticalTextAlignment="Center">
+            <Label Text="&#xE5CD;" 
+                   FontFamily="MaterialIcons" 
+                   FontSize="28" 
+                   TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" 
+                   VerticalTextAlignment="Center">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding CancelCommand}" />
                 </Label.GestureRecognizers>
             </Label>
 
-            <Label Grid.Column="1" Text="{Binding PageTitle}" FontFamily="OpenSansSemibold" FontAttributes="Bold,Italic" FontSize="22" TextColor="{StaticResource Primary}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            <Label Grid.Column="1" 
+                   Text="{Binding PageTitle}" 
+                   FontFamily="OpenSansSemibold" 
+                   FontAttributes="Bold,Italic" 
+                   FontSize="22" 
+                   TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" 
+                   HorizontalTextAlignment="Center" 
+                   VerticalTextAlignment="Center" />
 
-            <Label Grid.Column="2" Text="DRAFT" FontFamily="OpenSansSemibold" FontSize="12" TextColor="{StaticResource Outline}" VerticalTextAlignment="Center" />
+            <Label Grid.Column="2" 
+                   Text="DRAFT" 
+                   FontFamily="OpenSansSemibold" 
+                   FontSize="12" 
+                   TextColor="{AppThemeBinding Light={StaticResource Outline}, Dark={StaticResource Gray400}}" 
+                   VerticalTextAlignment="Center" />
         </Grid>
 
         <ScrollView Grid.Row="1" VerticalScrollBarVisibility="Never">
             <VerticalStackLayout Spacing="24" Padding="0,0,0,40">
 
-                <Border HeightRequest="200" StrokeThickness="0" StrokeShape="RoundRectangle 16" BackgroundColor="{StaticResource SurfaceContainerHighest}">
+                <Border HeightRequest="200" 
+                        StrokeThickness="0" 
+                        StrokeShape="RoundRectangle 16" 
+                        BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceContainerHighest}, Dark={StaticResource Gray900}}">
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding PickImageCommand}" />
                     </Border.GestureRecognizers>
@@ -38,64 +57,92 @@
                 </Border>
 
                 <VerticalStackLayout Spacing="8">
-                    <Label Text="RECIPE TITLE" FontFamily="OpenSansSemibold" FontSize="11" CharacterSpacing="1.2" TextColor="{StaticResource Primary}" />
-                    <Border StrokeThickness="0" StrokeShape="RoundRectangle 12" BackgroundColor="{StaticResource SurfaceContainerHighest}">
-                        <Entry Text="{Binding Title}" Placeholder="e.g. Roasted Thyme Salmon" FontSize="16" FontFamily="OpenSansSemibold" TextColor="{StaticResource OnSurface}" Margin="12,4" />
+                    <Label Text="RECIPE TITLE" FontFamily="OpenSansSemibold" FontSize="11" CharacterSpacing="1.2" TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+                    <Border StrokeThickness="0" StrokeShape="RoundRectangle 12" BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceContainerHighest}, Dark={StaticResource Gray900}}">
+                        <Entry Text="{Binding Title}" 
+                               Placeholder="e.g. Roasted Thyme Salmon" 
+                               FontSize="16" 
+                               FontFamily="OpenSansSemibold" 
+                               TextColor="{AppThemeBinding Light={StaticResource OnSurface}, Dark={StaticResource Surface}}" 
+                               Margin="12,4" />
                     </Border>
                 </VerticalStackLayout>
 
                 <VerticalStackLayout Spacing="8">
-                    <Label Text="CATEGORY" FontFamily="OpenSansSemibold" FontSize="11" CharacterSpacing="1.2" TextColor="{StaticResource Primary}" />
-                    <Border StrokeThickness="0" StrokeShape="RoundRectangle 12" BackgroundColor="{StaticResource SurfaceContainerHighest}">
+                    <Label Text="CATEGORY" FontFamily="OpenSansSemibold" FontSize="11" CharacterSpacing="1.2" TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+                    <Border StrokeThickness="0" StrokeShape="RoundRectangle 12" BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceContainerHighest}, Dark={StaticResource Gray900}}">
                         <Picker Title="Alege o categorie..."
                                 ItemsSource="{Binding Categories}"
                                 SelectedItem="{Binding Category}"
                                 FontSize="14"
-                                TextColor="{StaticResource OnSurface}"
-                                TitleColor="{StaticResource Outline}"
+                                TextColor="{AppThemeBinding Light={StaticResource OnSurface}, Dark={StaticResource Surface}}"
+                                TitleColor="{AppThemeBinding Light={StaticResource Outline}, Dark={StaticResource Gray400}}"
                                 Margin="12,4" />
                     </Border>
                 </VerticalStackLayout>
 
                 <Grid ColumnDefinitions="*,*" ColumnSpacing="16">
                     <VerticalStackLayout Spacing="8">
-                        <Label Text="TIMP PREPARARE (min)" FontFamily="OpenSansSemibold" FontSize="11" CharacterSpacing="1.2" TextColor="{StaticResource Primary}" />
-                        <Border StrokeThickness="0" StrokeShape="RoundRectangle 12" BackgroundColor="{StaticResource SurfaceContainerHighest}">
-                            <Entry Text="{Binding PrepTimeText}" Keyboard="Numeric" Placeholder="ex: 30" FontSize="14" TextColor="{StaticResource OnSurface}" Margin="12,4" />
+                        <Label Text="TIMP PREPARARE (min)" FontFamily="OpenSansSemibold" FontSize="11" CharacterSpacing="1.2" TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+                        <Border StrokeThickness="0" StrokeShape="RoundRectangle 12" BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceContainerHighest}, Dark={StaticResource Gray900}}">
+                            <Entry Text="{Binding PrepTimeText}" Keyboard="Numeric" Placeholder="ex: 30" FontSize="14" TextColor="{AppThemeBinding Light={StaticResource OnSurface}, Dark={StaticResource Surface}}" Margin="12,4" />
                         </Border>
                     </VerticalStackLayout>
 
                     <VerticalStackLayout Grid.Column="1" Spacing="8">
-                        <Label Text="CALORII (kcal)" FontFamily="OpenSansSemibold" FontSize="11" CharacterSpacing="1.2" TextColor="{StaticResource Primary}" />
-                        <Border StrokeThickness="0" StrokeShape="RoundRectangle 12" BackgroundColor="{StaticResource SurfaceContainerHighest}">
-                            <Entry Text="{Binding CaloriesText}" Keyboard="Numeric" Placeholder="ex: 450" FontSize="14" TextColor="{StaticResource OnSurface}" Margin="12,4" />
+                        <Label Text="CALORII (kcal)" FontFamily="OpenSansSemibold" FontSize="11" CharacterSpacing="1.2" TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+                        <Border StrokeThickness="0" StrokeShape="RoundRectangle 12" BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceContainerHighest}, Dark={StaticResource Gray900}}">
+                            <Entry Text="{Binding CaloriesText}" Keyboard="Numeric" Placeholder="ex: 450" FontSize="14" TextColor="{AppThemeBinding Light={StaticResource OnSurface}, Dark={StaticResource Surface}}" Margin="12,4" />
                         </Border>
                     </VerticalStackLayout>
                 </Grid>
 
                 <VerticalStackLayout Spacing="8">
-                    <Label Text="THE INGREDIENTS" FontFamily="OpenSansSemibold" FontSize="11" CharacterSpacing="1.2" TextColor="{StaticResource Primary}" />
-                    <Border StrokeThickness="0" StrokeShape="RoundRectangle 12" BackgroundColor="{StaticResource SurfaceContainerHighest}">
-                        <Editor Text="{Binding Ingredients}" Placeholder="List your ingredients here..." FontSize="14" TextColor="{StaticResource OnSurface}" HeightRequest="100" Margin="12,4" />
+                    <Label Text="THE INGREDIENTS" FontFamily="OpenSansSemibold" FontSize="11" CharacterSpacing="1.2" TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+                    <Border StrokeThickness="0" StrokeShape="RoundRectangle 12" BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceContainerHighest}, Dark={StaticResource Gray900}}">
+                        <Editor Text="{Binding Ingredients}" 
+                                Placeholder="List your ingredients here..." 
+                                FontSize="14" 
+                                TextColor="{AppThemeBinding Light={StaticResource OnSurface}, Dark={StaticResource Surface}}" 
+                                HeightRequest="100" 
+                                Margin="12,4" />
                     </Border>
                 </VerticalStackLayout>
 
                 <VerticalStackLayout Spacing="8">
-                    <Label Text="METHOD &amp; NARRATIVE" FontFamily="OpenSansSemibold" FontSize="11" CharacterSpacing="1.2" TextColor="{StaticResource Primary}" />
-                    <Border StrokeThickness="0" StrokeShape="RoundRectangle 12" BackgroundColor="{StaticResource SurfaceContainerLowest}">
+                    <Label Text="METHOD &amp; NARRATIVE" FontFamily="OpenSansSemibold" FontSize="11" CharacterSpacing="1.2" TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+                    <Border StrokeThickness="0" StrokeShape="RoundRectangle 12" BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceContainerLowest}, Dark={StaticResource Gray900}}">
                         <Border.Shadow>
                             <Shadow Brush="Black" Opacity="0.05" Radius="10" Offset="0,4" />
                         </Border.Shadow>
-                        <Editor Text="{Binding Description}" Placeholder="Write the preparation steps..." FontSize="14" TextColor="{StaticResource OnSurfaceVariant}" HeightRequest="150" Margin="16,8" />
+                        <Editor Text="{Binding Description}" 
+                                Placeholder="Write the preparation steps..." 
+                                FontSize="14" 
+                                TextColor="{AppThemeBinding Light={StaticResource OnSurfaceVariant}, Dark={StaticResource Gray400}}" 
+                                HeightRequest="150" 
+                                Margin="16,8" />
                     </Border>
                 </VerticalStackLayout>
 
             </VerticalStackLayout>
         </ScrollView>
 
-        <Grid Grid.Row="2" ColumnDefinitions="*, 2*" ColumnSpacing="16" Padding="0,16,0,24" BackgroundColor="{StaticResource Surface}">
-            <Button Text="CANCEL" BackgroundColor="Transparent" TextColor="{StaticResource Outline}" FontFamily="OpenSansSemibold" FontSize="13" Command="{Binding CancelCommand}" />
-            <Button Grid.Column="1" Text="PUBLISH RECIPE" BackgroundColor="{StaticResource Primary}" TextColor="White" FontFamily="OpenSansSemibold" FontSize="13" CornerRadius="24" Command="{Binding SaveRecipeCommand}" />
+        <Grid Grid.Row="2" ColumnDefinitions="*, 2*" ColumnSpacing="16" Padding="0,16,0,24" BackgroundColor="{AppThemeBinding Light={StaticResource Surface}, Dark={StaticResource OffBlack}}">
+            <Button Text="CANCEL" 
+                    BackgroundColor="Transparent" 
+                    TextColor="{AppThemeBinding Light={StaticResource Outline}, Dark={StaticResource Gray400}}" 
+                    FontFamily="OpenSansSemibold" 
+                    FontSize="13" 
+                    Command="{Binding CancelCommand}" />
+
+            <Button Grid.Column="1" 
+                    Text="PUBLISH RECIPE" 
+                    BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" 
+                    TextColor="{AppThemeBinding Light=White, Dark={StaticResource PrimaryDarkText}}" 
+                    FontFamily="OpenSansSemibold" 
+                    FontSize="13" 
+                    CornerRadius="24" 
+                    Command="{Binding SaveRecipeCommand}" />
         </Grid>
 
     </Grid>

@@ -5,7 +5,7 @@
              xmlns:state="clr-namespace:RecipesApp.ViewModels.UIState"
              x:Class="RecipesApp.Views.RecipesPage"
              x:DataType="vm:RecipesPageViewModel"
-             BackgroundColor="{StaticResource Surface}">
+             BackgroundColor="{AppThemeBinding Light={StaticResource Surface}, Dark={StaticResource OffBlack}}">
 
     <Grid RowDefinitions="*">
         <Border WidthRequest="320"
@@ -31,8 +31,12 @@
                         <Label Text="&#xE5D2;"
                                FontFamily="MaterialIcons"
                                FontSize="28"
-                               TextColor="{StaticResource Primary}"
-                               VerticalTextAlignment="Center" />
+                               TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"
+                               VerticalTextAlignment="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding GoToSettingsCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
 
                         <Label Grid.Column="1"
                                Text="The Editorial&#10;Kitchen"
@@ -40,18 +44,18 @@
                                FontAttributes="Bold,Italic"
                                FontSize="22"
                                LineHeight="1.05"
-                               TextColor="{StaticResource Primary}" />
+                               TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
 
                         <Border Grid.Column="2"
                                 WidthRequest="42"
                                 HeightRequest="42"
                                 StrokeThickness="0"
                                 StrokeShape="RoundRectangle 21"
-                                BackgroundColor="{StaticResource InverseSurface}">
+                                BackgroundColor="{AppThemeBinding Light={StaticResource InverseSurface}, Dark={StaticResource SurfaceContainerHighest}}">
                             <Label Text="&#xE56C;"
                                    FontFamily="MaterialIcons"
                                    FontSize="20"
-                                   TextColor="White"
+                                   TextColor="{AppThemeBinding Light=White, Dark={StaticResource OffBlack}}"
                                    HorizontalOptions="Center"
                                    VerticalOptions="Center" />
                         </Border>
@@ -60,69 +64,67 @@
                     <Border HeightRequest="62"
                             StrokeThickness="0"
                             StrokeShape="RoundRectangle 31"
-                            BackgroundColor="{StaticResource SurfaceContainerHighest}">
+                            BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceContainerHighest}, Dark={StaticResource Gray900}}">
 
                         <Border.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding GoToAllRecipesCommand}" />
                         </Border.GestureRecognizers>
 
-                        <Grid ColumnDefinitions="34,*,34"
-                              Padding="16,0">
+                        <Grid ColumnDefinitions="34,*,34" Padding="16,0">
                             <Label Text="&#xE8B6;"
                                    FontFamily="MaterialIcons"
                                    FontSize="22"
-                                   TextColor="{StaticResource Outline}"
+                                   TextColor="{AppThemeBinding Light={StaticResource Outline}, Dark={StaticResource Gray400}}"
                                    VerticalTextAlignment="Center" />
                             <Label Grid.Column="1"
                                    Text="Search for recipes..."
                                    FontSize="14"
-                                   TextColor="{StaticResource Outline}"
+                                   TextColor="{AppThemeBinding Light={StaticResource Outline}, Dark={StaticResource Gray400}}"
                                    VerticalTextAlignment="Center" />
                             <Label Grid.Column="2"
                                    Text="&#xE429;"
                                    FontFamily="MaterialIcons"
                                    FontSize="22"
-                                   TextColor="{StaticResource Outline}"
+                                   TextColor="{AppThemeBinding Light={StaticResource Outline}, Dark={StaticResource Gray400}}"
                                    HorizontalTextAlignment="End"
                                    VerticalTextAlignment="Center" />
                         </Grid>
                     </Border>
 
-                    <ScrollView Orientation="Horizontal"
-                                HorizontalScrollBarVisibility="Never">
+                    <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never">
                         <HorizontalStackLayout Spacing="12">
                             <Border Padding="18,8"
                                     StrokeThickness="0"
                                     StrokeShape="RoundRectangle 8"
-                                    BackgroundColor="{StaticResource Primary}">
+                                    BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}">
                                 <Label Text="All"
                                        FontFamily="OpenSansSemibold"
                                        FontSize="13"
-                                       TextColor="White" />
+                                       TextColor="{AppThemeBinding Light=White, Dark={StaticResource PrimaryDarkText}}" />
                             </Border>
                             <Border Padding="18,8"
                                     StrokeThickness="0"
                                     StrokeShape="RoundRectangle 8"
-                                    BackgroundColor="{StaticResource SurfaceContainerLow}">
+                                    BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceContainerLow}, Dark={StaticResource Gray900}}">
                                 <Label Text="Breakfast"
                                        FontSize="13"
-                                       TextColor="{StaticResource OnSurface}" />
+                                       TextColor="{AppThemeBinding Light={StaticResource OnSurface}, Dark={StaticResource Surface}}" />
                             </Border>
                             <Border Padding="18,8"
                                     StrokeThickness="0"
                                     StrokeShape="RoundRectangle 8"
-                                    BackgroundColor="{StaticResource SurfaceContainerLow}">
+                                    BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceContainerLow}, Dark={StaticResource Gray900}}">
                                 <Label Text="Lunch"
                                        FontSize="13"
-                                       TextColor="{StaticResource OnSurface}" />
+                                       TextColor="{AppThemeBinding Light={StaticResource OnSurface}, Dark={StaticResource Surface}}" />
                             </Border>
                             <Border Padding="18,8"
                                     StrokeThickness="0"
                                     StrokeShape="RoundRectangle 8"
-                                    BackgroundColor="{StaticResource SecondaryFixed}">
+                                    BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceContainerLow}, Dark={StaticResource Gray900}}">
                                 <Label Text="Dinner"
                                        FontSize="13"
-                                       TextColor="{StaticResource SecondaryDarkText}" />
+                                       TextColor="{AppThemeBinding Light={StaticResource OnSurface}, Dark={StaticResource Surface}}" />
                             </Border>
                         </HorizontalStackLayout>
                     </ScrollView>
@@ -131,12 +133,12 @@
                            FontFamily="OpenSansSemibold"
                            FontAttributes="Bold,Italic"
                            FontSize="28"
-                           TextColor="{StaticResource OnSurface}"
+                           TextColor="{AppThemeBinding Light={StaticResource OnSurface}, Dark={StaticResource Surface}}"
                            Margin="0,8,0,0" />
 
                     <ActivityIndicator IsRunning="{Binding IsBusy}"
                                        IsVisible="{Binding IsBusy}"
-                                       Color="{StaticResource Primary}"
+                                       Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"
                                        HorizontalOptions="Center" />
 
                     <Label Text="{Binding ErrorMessage}"
@@ -146,13 +148,12 @@
                            HorizontalTextAlignment="Center"
                            LineBreakMode="WordWrap" />
 
-                    <CollectionView ItemsSource="{Binding Recipes}"
-                                    SelectionMode="None">
+                    <CollectionView ItemsSource="{Binding Recipes}" SelectionMode="None">
 
                         <CollectionView.EmptyView>
                             <Border StrokeThickness="0"
                                     StrokeShape="RoundRectangle 12"
-                                    BackgroundColor="{StaticResource SurfaceContainerLowest}">
+                                    BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceContainerLowest}, Dark={StaticResource Gray900}}">
                                 <Border.Shadow>
                                     <Shadow Brush="Black" Opacity="0.08" Radius="18" Offset="0,8" />
                                 </Border.Shadow>
@@ -165,15 +166,15 @@
                                                FontFamily="OpenSansSemibold"
                                                FontAttributes="Bold"
                                                FontSize="25"
-                                               TextColor="{StaticResource OnSurface}" />
+                                               TextColor="{AppThemeBinding Light={StaticResource OnSurface}, Dark={StaticResource Surface}}" />
                                         <Label Text="Empty List"
                                                FontFamily="OpenSansSemibold"
                                                FontAttributes="Bold,Italic"
                                                FontSize="34"
-                                               TextColor="{StaticResource Primary}" />
+                                               TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
                                         <Label Text="Apasă butonul de '+' pentru a adăuga prima ta rețetă!"
                                                FontSize="14"
-                                               TextColor="{StaticResource OnSurfaceVariant}"
+                                               TextColor="{AppThemeBinding Light={StaticResource OnSurfaceVariant}, Dark={StaticResource Gray400}}"
                                                LineBreakMode="WordWrap" />
                                     </VerticalStackLayout>
                                 </VerticalStackLayout>
@@ -185,7 +186,7 @@
                                 <Border Margin="0,0,0,24"
                                         StrokeThickness="0"
                                         StrokeShape="RoundRectangle 24"
-                                        BackgroundColor="{StaticResource SurfaceContainerLowest}">
+                                        BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceContainerLowest}, Dark={StaticResource Gray900}}">
 
                                     <Border.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:RecipesPageViewModel}}, Path=EditRecipeCommand}" CommandParameter="{Binding .}" />
@@ -205,10 +206,10 @@
                                                     Padding="8,4"
                                                     StrokeThickness="0"
                                                     StrokeShape="RoundRectangle 8"
-                                                    BackgroundColor="White">
+                                                    BackgroundColor="{AppThemeBinding Light=White, Dark={StaticResource Gray900}}">
                                                 <HorizontalStackLayout Spacing="4" VerticalOptions="Center">
                                                     <Label Text="★" TextColor="#D4AF37" FontSize="12" FontAttributes="Bold" />
-                                                    <Label Text="4.8" TextColor="{StaticResource OnSurface}" FontSize="12" FontFamily="OpenSansSemibold" />
+                                                    <Label Text="4.8" TextColor="{AppThemeBinding Light={StaticResource OnSurface}, Dark={StaticResource Surface}}" FontSize="12" FontFamily="OpenSansSemibold" />
                                                 </HorizontalStackLayout>
                                             </Border>
 
@@ -218,9 +219,9 @@
                                                     Padding="10,6"
                                                     StrokeThickness="0"
                                                     StrokeShape="RoundRectangle 6"
-                                                    BackgroundColor="{StaticResource Primary}">
+                                                    BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}">
                                                 <Label Text="{Binding Category}" 
-                                                       TextColor="White" 
+                                                       TextColor="{AppThemeBinding Light=White, Dark={StaticResource PrimaryDarkText}}" 
                                                        FontSize="10" 
                                                        FontFamily="OpenSansSemibold"
                                                        TextTransform="Uppercase" />
@@ -231,19 +232,19 @@
                                             <Label Text="{Binding Title}"
                                                    FontFamily="OpenSansSemibold"
                                                    FontSize="20"
-                                                   TextColor="{StaticResource OnSurface}"
+                                                   TextColor="{AppThemeBinding Light={StaticResource OnSurface}, Dark={StaticResource Surface}}"
                                                    LineBreakMode="TailTruncation"
                                                    MaxLines="2" />
 
                                             <HorizontalStackLayout Spacing="16" Margin="0,4,0,0">
                                                 <HorizontalStackLayout Spacing="4">
-                                                    <Label Text="&#xE192;" FontFamily="MaterialIcons" FontSize="14" TextColor="{StaticResource Outline}" VerticalOptions="Center"/>
-                                                    <Label Text="{Binding PrepTime, StringFormat='{0} mins'}" FontSize="12" TextColor="{StaticResource Outline}" VerticalOptions="Center"/>
+                                                    <Label Text="&#xE192;" FontFamily="MaterialIcons" FontSize="14" TextColor="{AppThemeBinding Light={StaticResource Outline}, Dark={StaticResource Gray400}}" VerticalOptions="Center"/>
+                                                    <Label Text="{Binding PrepTime, StringFormat='{0} mins'}" FontSize="12" TextColor="{AppThemeBinding Light={StaticResource Outline}, Dark={StaticResource Gray400}}" VerticalOptions="Center"/>
                                                 </HorizontalStackLayout>
 
                                                 <HorizontalStackLayout Spacing="4">
-                                                    <Label Text="&#xE3E7;" FontFamily="MaterialIcons" FontSize="14" TextColor="{StaticResource Outline}" VerticalOptions="Center"/>
-                                                    <Label Text="{Binding Calories, StringFormat='{0} kcal'}" FontSize="12" TextColor="{StaticResource Outline}" VerticalOptions="Center"/>
+                                                    <Label Text="&#xE3E7;" FontFamily="MaterialIcons" FontSize="14" TextColor="{AppThemeBinding Light={StaticResource Outline}, Dark={StaticResource Gray400}}" VerticalOptions="Center"/>
+                                                    <Label Text="{Binding Calories, StringFormat='{0} kcal'}" FontSize="12" TextColor="{AppThemeBinding Light={StaticResource Outline}, Dark={StaticResource Gray400}}" VerticalOptions="Center"/>
                                                 </HorizontalStackLayout>
                                             </HorizontalStackLayout>
                                         </VerticalStackLayout>
@@ -252,7 +253,6 @@
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
-
                 </VerticalStackLayout>
             </Grid>
         </ScrollView>
@@ -264,9 +264,9 @@
                 VerticalOptions="End"
                 StrokeThickness="0"
                 StrokeShape="RoundRectangle 32"
-                BackgroundColor="{StaticResource Primary}">
+                BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}">
             <Border.Shadow>
-                <Shadow Brush="{StaticResource Primary}" Opacity="0.3" Radius="12" Offset="0,6" />
+                <Shadow Brush="Black" Opacity="0.25" Radius="12" Offset="0,6" />
             </Border.Shadow>
             <Border.GestureRecognizers>
                 <TapGestureRecognizer Tapped="OnAddRecipeClicked" />
@@ -275,7 +275,7 @@
             <Label Text="&#xE145;" 
                    FontFamily="MaterialIcons"
                    FontSize="32"
-                   TextColor="White"
+                   TextColor="{AppThemeBinding Light=White, Dark={StaticResource PrimaryDarkText}}"
                    HorizontalOptions="Center"
                    VerticalOptions="Center" />
         </Border>

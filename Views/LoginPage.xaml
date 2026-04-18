@@ -6,7 +6,7 @@
              x:DataType="vm:LoginPageViewModel"
              Shell.TabBarIsVisible="False"
              Shell.NavBarIsVisible="False"
-             BackgroundColor="{StaticResource Surface}">
+             BackgroundColor="{AppThemeBinding Light={StaticResource Surface}, Dark={StaticResource OffBlack}}">
 
     <Grid RowDefinitions="*">
         <Border WidthRequest="360"
@@ -34,205 +34,204 @@
         </Border>
 
         <Grid Padding="28,44,28,40">
-                <VerticalStackLayout Spacing="0"
-                                     MaximumWidthRequest="480"
+            <VerticalStackLayout Spacing="0"
+                                 MaximumWidthRequest="480"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Center">
+
+                <VerticalStackLayout Spacing="12"
                                      HorizontalOptions="Center"
-                                     VerticalOptions="Center">
-                    <VerticalStackLayout Spacing="12"
-                                         HorizontalOptions="Center"
-                                         Margin="0,0,0,34">
-                        <Border WidthRequest="72"
-                                HeightRequest="72"
-                                StrokeThickness="0"
-                                StrokeShape="RoundRectangle 14"
-                                HorizontalOptions="Center">
-                            <Border.Background>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                    <GradientStop Color="{StaticResource Primary}" Offset="0" />
-                                    <GradientStop Color="{StaticResource PrimaryContainer}" Offset="1" />
-                                </LinearGradientBrush>
-                            </Border.Background>
-                            <Border.Shadow>
-                                <Shadow Brush="{StaticResource Primary}" Opacity="0.22" Radius="18" Offset="0,8" />
-                            </Border.Shadow>
-                            <Label Text="&#xE56C;"
-                                   FontFamily="MaterialIcons"
-                                   FontSize="38"
-                                   TextColor="White"
-                                   HorizontalOptions="Center"
-                                   VerticalOptions="Center" />
-                        </Border>
+                                     Margin="0,0,0,34">
+                    <Border WidthRequest="72"
+                            HeightRequest="72"
+                            StrokeThickness="0"
+                            StrokeShape="RoundRectangle 14"
+                            HorizontalOptions="Center">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" Offset="0" />
+                                <GradientStop Color="{AppThemeBinding Light={StaticResource PrimaryContainer}, Dark={StaticResource Primary}}" Offset="1" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Border.Shadow>
+                            <Shadow Brush="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" Opacity="0.22" Radius="18" Offset="0,8" />
+                        </Border.Shadow>
+                        <Label Text="&#xE56C;"
+                               FontFamily="MaterialIcons"
+                               FontSize="38"
+                               TextColor="{AppThemeBinding Light=White, Dark={StaticResource PrimaryDarkText}}"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" />
+                    </Border>
 
-                        <Label Text="The Editorial Kitchen"
+                    <Label Text="The Editorial Kitchen"
+                           FontFamily="OpenSansSemibold"
+                           FontAttributes="Bold,Italic"
+                           FontSize="28"
+                           TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"
+                           HorizontalTextAlignment="Center" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Spacing="4"
+                                     HorizontalOptions="Center"
+                                     Margin="0,0,0,30">
+                    <Label Text="Welcome Back"
+                           FontFamily="OpenSansSemibold"
+                           FontSize="42"
+                           FontAttributes="Bold"
+                           TextColor="{AppThemeBinding Light={StaticResource OnSurface}, Dark={StaticResource Surface}}"
+                           HorizontalTextAlignment="Center" />
+                    <Label Text="Sign in to continue your culinary journey"
+                           FontSize="14"
+                           TextColor="{AppThemeBinding Light={StaticResource OnSurfaceVariant}, Dark={StaticResource Gray400}}"
+                           HorizontalTextAlignment="Center" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Spacing="18">
+                    <VerticalStackLayout Spacing="7">
+                        <Label Text="EMAIL ADDRESS"
                                FontFamily="OpenSansSemibold"
-                               FontAttributes="Bold,Italic"
-                               FontSize="28"
-                               TextColor="{StaticResource Primary}"
-                               HorizontalTextAlignment="Center" />
-                    </VerticalStackLayout>
-
-                    <VerticalStackLayout Spacing="4"
-                                         HorizontalOptions="Center"
-                                         Margin="0,0,0,30">
-                        <Label Text="Welcome Back"
-                               FontFamily="OpenSansSemibold"
-                               FontSize="42"
-                               FontAttributes="Bold"
-                               TextColor="{StaticResource OnSurface}"
-                               HorizontalTextAlignment="Center" />
-                        <Label Text="Sign in to continue your culinary journey"
-                               FontSize="14"
-                               TextColor="{StaticResource OnSurfaceVariant}"
-                               HorizontalTextAlignment="Center" />
-                    </VerticalStackLayout>
-
-                    <VerticalStackLayout Spacing="18">
-                        <VerticalStackLayout Spacing="7">
-                            <Label Text="EMAIL ADDRESS"
-                                   FontFamily="OpenSansSemibold"
-                                   FontSize="11"
-                                   CharacterSpacing="1.4"
-                                   TextColor="{StaticResource OnSurfaceVariant}"
-                                   Margin="4,0,0,0" />
-
-                            <Border HeightRequest="58"
-                                    StrokeThickness="0"
-                                    StrokeShape="RoundRectangle 12"
-                                    BackgroundColor="{StaticResource SurfaceContainerHighest}">
-                                <Grid ColumnDefinitions="42,*"
-                                      Padding="14,0,14,0">
-                                    <Label Grid.Column="0"
-                                           Text="&#xE0E1;"
-                                           FontFamily="MaterialIcons"
-                                           FontSize="22"
-                                           TextColor="{StaticResource Outline}"
-                                           HorizontalOptions="Start"
-                                           VerticalOptions="Center" />
-                                    <Entry Grid.Column="1"
-                                           Text="{Binding Email}"
-                                           Placeholder="chef@editorialkitchen.com"
-                                           Keyboard="Email"
-                                           ReturnType="Next"
-                                           FontSize="14"
-                                           TextColor="{StaticResource OnSurface}"
-                                           PlaceholderColor="{StaticResource Outline}" />
-                                </Grid>
-                            </Border>
-                        </VerticalStackLayout>
-
-                        <VerticalStackLayout Spacing="7">
-                            <Grid ColumnDefinitions="*,Auto"
-                                  Margin="4,0,4,0">
-                                <Label Text="PASSWORD"
-                                       FontFamily="OpenSansSemibold"
-                                       FontSize="11"
-                                       CharacterSpacing="1.4"
-                                       TextColor="{StaticResource OnSurfaceVariant}" />
-                                <Label Grid.Column="1"
-                                       Text="Forgot Password?"
-                                       FontFamily="OpenSansSemibold"
-                                       FontSize="12"
-                                       TextColor="{StaticResource Primary}" />
-                            </Grid>
-
-                            <Border HeightRequest="58"
-                                    StrokeThickness="0"
-                                    StrokeShape="RoundRectangle 12"
-                                    BackgroundColor="{StaticResource SurfaceContainerHighest}">
-                                <Grid ColumnDefinitions="42,*,32"
-                                      Padding="14,0,14,0">
-                                    <Label Grid.Column="0"
-                                           Text="&#xE897;"
-                                           FontFamily="MaterialIcons"
-                                           FontSize="22"
-                                           TextColor="{StaticResource Outline}"
-                                           HorizontalOptions="Start"
-                                           VerticalOptions="Center" />
-                                    <Entry Grid.Column="1"
-                                           Text="{Binding Password}"
-                                           Placeholder="Password"
-                                           IsPassword="True"
-                                           FontSize="14"
-                                           TextColor="{StaticResource OnSurface}"
-                                           PlaceholderColor="{StaticResource Outline}" />
-                                    <Label Grid.Column="2"
-                                           Text="&#xE8F4;"
-                                           FontFamily="MaterialIcons"
-                                           FontSize="22"
-                                           TextColor="{StaticResource Outline}"
-                                           HorizontalOptions="End"
-                                           VerticalOptions="Center" />
-                                </Grid>
-                            </Border>
-                        </VerticalStackLayout>
+                               FontSize="11"
+                               CharacterSpacing="1.4"
+                               TextColor="{AppThemeBinding Light={StaticResource OnSurfaceVariant}, Dark={StaticResource Gray400}}"
+                               Margin="4,0,0,0" />
 
                         <Border HeightRequest="58"
                                 StrokeThickness="0"
-                                StrokeShape="RoundRectangle 29"
-                                Margin="0,10,0,0">
-                            <Border.Background>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                    <GradientStop Color="{StaticResource Primary}" Offset="0" />
-                                    <GradientStop Color="{StaticResource PrimaryContainer}" Offset="1" />
-                                </LinearGradientBrush>
-                            </Border.Background>
-                            <Border.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding SignInCommand}" />
-                            </Border.GestureRecognizers>
-                            <HorizontalStackLayout Spacing="8"
-                                                   HorizontalOptions="Center"
-                                                   VerticalOptions="Center">
-                                <Label Text="Sign In"
-                                       FontFamily="OpenSansSemibold"
-                                       FontAttributes="Bold"
-                                       FontSize="17"
-                                       TextColor="White"
-                                       VerticalTextAlignment="Center" />
-                                <Label Text="&#xE5C8;"
+                                StrokeShape="RoundRectangle 12"
+                                BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceContainerHighest}, Dark={StaticResource Gray900}}">
+                            <Grid ColumnDefinitions="42,*" Padding="14,0,14,0">
+                                <Label Grid.Column="0"
+                                       Text="&#xE0E1;"
                                        FontFamily="MaterialIcons"
                                        FontSize="22"
-                                       TextColor="White"
-                                       VerticalTextAlignment="Center" />
-                            </HorizontalStackLayout>
+                                       TextColor="{AppThemeBinding Light={StaticResource Outline}, Dark={StaticResource Gray400}}"
+                                       HorizontalOptions="Start"
+                                       VerticalOptions="Center" />
+                                <Entry Grid.Column="1"
+                                       Text="{Binding Email}"
+                                       Placeholder="chef@editorialkitchen.com"
+                                       Keyboard="Email"
+                                       ReturnType="Next"
+                                       FontSize="14"
+                                       TextColor="{AppThemeBinding Light={StaticResource OnSurface}, Dark={StaticResource Surface}}"
+                                       PlaceholderColor="{AppThemeBinding Light={StaticResource Outline}, Dark={StaticResource Gray600}}" />
+                            </Grid>
                         </Border>
-
-                        <ActivityIndicator IsRunning="{Binding IsBusy}"
-                                           IsVisible="{Binding IsBusy}"
-                                           Color="{StaticResource Primary}"
-                                           HorizontalOptions="Center" />
-
-                        <Label Text="{Binding InfoMessage}"
-                               IsVisible="{Binding HasInfo}"
-                               FontSize="13"
-                               TextColor="{StaticResource Primary}"
-                               HorizontalTextAlignment="Center"
-                               LineBreakMode="WordWrap" />
-
-                        <Label Text="{Binding ErrorMessage}"
-                               IsVisible="{Binding HasError}"
-                               FontSize="13"
-                               TextColor="#BA1A1A"
-                               HorizontalTextAlignment="Center"
-                               LineBreakMode="WordWrap" />
                     </VerticalStackLayout>
 
-                    <HorizontalStackLayout Spacing="5"
-                                           Margin="0,30,0,0"
-                                           HorizontalOptions="Center">
-                        <Label Text="Don't have an account?"
-                               FontSize="14"
-                               TextColor="{StaticResource OnSurfaceVariant}" />
-                        <Label Text="Create New Account"
-                               FontFamily="OpenSansSemibold"
-                               FontAttributes="Bold"
-                               FontSize="14"
-                               TextColor="{StaticResource Primary}">
-                            <Label.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding GoToSignUpCommand}" />
-                            </Label.GestureRecognizers>
-                        </Label>
-                    </HorizontalStackLayout>
+                    <VerticalStackLayout Spacing="7">
+                        <Grid ColumnDefinitions="*,Auto" Margin="4,0,4,0">
+                            <Label Text="PASSWORD"
+                                   FontFamily="OpenSansSemibold"
+                                   FontSize="11"
+                                   CharacterSpacing="1.4"
+                                   TextColor="{AppThemeBinding Light={StaticResource OnSurfaceVariant}, Dark={StaticResource Gray400}}" />
+                            <Label Grid.Column="1"
+                                   Text="Forgot Password?"
+                                   FontFamily="OpenSansSemibold"
+                                   FontSize="12"
+                                   TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+                        </Grid>
+
+                        <Border HeightRequest="58"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 12"
+                                BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceContainerHighest}, Dark={StaticResource Gray900}}">
+                            <Grid ColumnDefinitions="42,*,32" Padding="14,0,14,0">
+                                <Label Grid.Column="0"
+                                       Text="&#xE897;"
+                                       FontFamily="MaterialIcons"
+                                       FontSize="22"
+                                       TextColor="{AppThemeBinding Light={StaticResource Outline}, Dark={StaticResource Gray400}}"
+                                       HorizontalOptions="Start"
+                                       VerticalOptions="Center" />
+                                <Entry Grid.Column="1"
+                                       Text="{Binding Password}"
+                                       Placeholder="Password"
+                                       IsPassword="True"
+                                       FontSize="14"
+                                       TextColor="{AppThemeBinding Light={StaticResource OnSurface}, Dark={StaticResource Surface}}"
+                                       PlaceholderColor="{AppThemeBinding Light={StaticResource Outline}, Dark={StaticResource Gray600}}" />
+                                <Label Grid.Column="2"
+                                       Text="&#xE8F4;"
+                                       FontFamily="MaterialIcons"
+                                       FontSize="22"
+                                       TextColor="{AppThemeBinding Light={StaticResource Outline}, Dark={StaticResource Gray400}}"
+                                       HorizontalOptions="End"
+                                       VerticalOptions="Center" />
+                            </Grid>
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <Border HeightRequest="58"
+                            StrokeThickness="0"
+                            StrokeShape="RoundRectangle 29"
+                            Margin="0,10,0,0">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" Offset="0" />
+                                <GradientStop Color="{AppThemeBinding Light={StaticResource PrimaryContainer}, Dark={StaticResource Primary}}" Offset="1" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SignInCommand}" />
+                        </Border.GestureRecognizers>
+                        <HorizontalStackLayout Spacing="8"
+                                               HorizontalOptions="Center"
+                                               VerticalOptions="Center">
+                            <Label Text="Sign In"
+                                   FontFamily="OpenSansSemibold"
+                                   FontAttributes="Bold"
+                                   FontSize="17"
+                                   TextColor="{AppThemeBinding Light=White, Dark={StaticResource PrimaryDarkText}}"
+                                   VerticalTextAlignment="Center" />
+                            <Label Text="&#xE5C8;"
+                                   FontFamily="MaterialIcons"
+                                   FontSize="22"
+                                   TextColor="{AppThemeBinding Light=White, Dark={StaticResource PrimaryDarkText}}"
+                                   VerticalTextAlignment="Center" />
+                        </HorizontalStackLayout>
+                    </Border>
+
+                    <ActivityIndicator IsRunning="{Binding IsBusy}"
+                                       IsVisible="{Binding IsBusy}"
+                                       Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"
+                                       HorizontalOptions="Center" />
+
+                    <Label Text="{Binding InfoMessage}"
+                           IsVisible="{Binding HasInfo}"
+                           FontSize="13"
+                           TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"
+                           HorizontalTextAlignment="Center"
+                           LineBreakMode="WordWrap" />
+
+                    <Label Text="{Binding ErrorMessage}"
+                           IsVisible="{Binding HasError}"
+                           FontSize="13"
+                           TextColor="#BA1A1A"
+                           HorizontalTextAlignment="Center"
+                           LineBreakMode="WordWrap" />
                 </VerticalStackLayout>
-            </Grid>
+
+                <HorizontalStackLayout Spacing="5"
+                                       Margin="0,30,0,0"
+                                       HorizontalOptions="Center">
+                    <Label Text="Don't have an account?"
+                           FontSize="14"
+                           TextColor="{AppThemeBinding Light={StaticResource OnSurfaceVariant}, Dark={StaticResource Gray400}}" />
+                    <Label Text="Create New Account"
+                           FontFamily="OpenSansSemibold"
+                           FontAttributes="Bold"
+                           FontSize="14"
+                           TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding GoToSignUpCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </HorizontalStackLayout>
+
+            </VerticalStackLayout>
+        </Grid>
     </Grid>
 </ContentPage>
