@@ -12,13 +12,35 @@ public partial class RecipesPageViewModel : ObservableObject
 {
     private readonly IRecipeService recipeService;
 
+    private List<RecipeUi> _allRecipesFromDb = new();
+
     public RecipesPageViewModel(IRecipeService recipeService)
     {
         this.recipeService = recipeService;
     }
 
     [ObservableProperty]
+    private bool isShowingInspirations = true;
+
+    [ObservableProperty]
+    private bool isShowingAllRecipes = false;
+
+    [ObservableProperty]
     private ObservableCollection<RecipeUi> recipes = new();
+
+    [ObservableProperty]
+    private ObservableCollection<RecipeUi> displayedAllRecipes = new();
+
+    public List<string> FilterCategories { get; } = new() { "Toate", "Mic dejun", "Prânz", "Cină" };
+    public List<string> SortOptions { get; } = new() { "Cele mai noi", "Timp preparare (Crescător)", "Calorii (Crescător)" };
+
+    [ObservableProperty]
+    private string selectedCategory = "Toate";
+    partial void OnSelectedCategoryChanged(string value) => ApplyFiltersAndSort();
+
+    [ObservableProperty]
+    private string selectedSort = "Cele mai noi";
+    partial void OnSelectedSortChanged(string value) => ApplyFiltersAndSort();
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(HasError))]
@@ -28,6 +50,21 @@ public partial class RecipesPageViewModel : ObservableObject
     private bool isBusy;
 
     public bool HasError => !string.IsNullOrWhiteSpace(ErrorMessage);
+
+    [RelayCommand]
+    private void SwitchTab(string tabName)
+    {
+        if (tabName == "Inspirations")
+        {
+            IsShowingInspirations = true;
+            IsShowingAllRecipes = false;
+        }
+        else if (tabName == "AllRecipes")
+        {
+            IsShowingInspirations = false;
+            IsShowingAllRecipes = true;
+        }
+    }
 
     [RelayCommand]
     private async Task LoadRecipesAsync()
@@ -41,7 +78,7 @@ public partial class RecipesPageViewModel : ObservableObject
 
             var recipesFromSupabase = await recipeService.GetRecipesAsync();
 
-            var allRecipes = recipesFromSupabase.Select(recipe => new RecipeUi
+            _allRecipesFromDb = recipesFromSupabase.Select(recipe => new RecipeUi
             {
                 Id = recipe.Id,
                 Title = recipe.Title,
@@ -56,15 +93,17 @@ public partial class RecipesPageViewModel : ObservableObject
             var random = new Random();
             var dailyInspirations = new List<RecipeUi>();
 
-            var breakfast = allRecipes.Where(r => r.Category == "Mic dejun").OrderBy(x => random.Next()).FirstOrDefault();
-            var lunch = allRecipes.Where(r => r.Category == "Prânz").OrderBy(x => random.Next()).FirstOrDefault();
-            var dinner = allRecipes.Where(r => r.Category == "Cină").OrderBy(x => random.Next()).FirstOrDefault();
+            var breakfast = _allRecipesFromDb.Where(r => r.Category == "Mic dejun").OrderBy(x => random.Next()).FirstOrDefault();
+            var lunch = _allRecipesFromDb.Where(r => r.Category == "Prânz").OrderBy(x => random.Next()).FirstOrDefault();
+            var dinner = _allRecipesFromDb.Where(r => r.Category == "Cină").OrderBy(x => random.Next()).FirstOrDefault();
 
             if (breakfast != null) dailyInspirations.Add(breakfast);
             if (lunch != null) dailyInspirations.Add(lunch);
             if (dinner != null) dailyInspirations.Add(dinner);
 
             Recipes = new ObservableCollection<RecipeUi>(dailyInspirations);
+
+            ApplyFiltersAndSort();
         }
         catch (Exception ex)
         {
@@ -76,53 +115,43 @@ public partial class RecipesPageViewModel : ObservableObject
         }
     }
 
-    [RelayCommand]
-    private async Task GoToLoginAsync()
+    private void ApplyFiltersAndSort()
     {
-        await Shell.Current.GoToAsync("//LoginPage");
+        var filtered = _allRecipesFromDb.AsEnumerable();
+
+        if (SelectedCategory != "Toate")
+        {
+            filtered = filtered.Where(r => r.Category == SelectedCategory);
+        }
+
+        if (SelectedSort == "Timp preparare (Crescător)")
+        {
+            filtered = filtered.OrderBy(r => r.PrepTime ?? int.MaxValue);
+        }
+        else if (SelectedSort == "Calorii (Crescător)")
+        {
+            filtered = filtered.OrderBy(r => r.Calories ?? int.MaxValue);
+        }
+
+        DisplayedAllRecipes = new ObservableCollection<RecipeUi>(filtered);
     }
 
     [RelayCommand]
-    private async Task EditRecipeAsync(RecipeUi selectedRecipe)
-    {
-        if (selectedRecipe == null) return;
-
-        await Shell.Current.GoToAsync($"AddRecipePage?recipeId={selectedRecipe.Id}");
-    }
-
-    [RelayCommand]
-    private async Task GoToAllRecipesAsync()
-    {
-        await Shell.Current.GoToAsync("AllRecipesPage");
-    }
-
-    [RelayCommand]
-    private async Task GoToSettingsAsync()
-    {
-        // Shell.Current.GoToAsync uses string-based URI routing
-        await Shell.Current.GoToAsync(nameof(SettingsPage));
-    }
+    private async Task GoToSettingsAsync() => await Shell.Current.GoToAsync(nameof(SettingsPage));
 
     [RelayCommand]
     private async Task OpenRecipeAsync(RecipeUi selectedRecipe)
     {
         if (selectedRecipe == null) return;
 
-        // Resolve the details page from DI (must be registered in MauiProgram)
         var page = MauiProgram.Services.GetService<RecipeDetailsPage>();
-        if (page == null)
-        {
-            await Shell.Current.DisplayAlert("Error", "Unable to open recipe details.", "OK");
-            return;
-        }
+        if (page == null) return;
 
-        // Pass the id to the viewmodel so it loads the recipe
         if (page.BindingContext is RecipeDetailsViewModel vm)
         {
             vm.RecipeId = selectedRecipe.Id;
         }
 
-        // Show as modal (keeps behavior consistent with other modal pages in the app)
         await Shell.Current.Navigation.PushModalAsync(page);
     }
 }
