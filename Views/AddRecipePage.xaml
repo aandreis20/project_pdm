@@ -71,7 +71,7 @@
                 <VerticalStackLayout Spacing="8">
                     <Label Text="CATEGORY" FontFamily="OpenSansSemibold" FontSize="11" CharacterSpacing="1.2" TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
                     <Border StrokeThickness="0" StrokeShape="RoundRectangle 12" BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceContainerHighest}, Dark={StaticResource Gray900}}">
-                        <Picker Title="Alege o categorie..."
+                        <Picker Title="Select a category..."
                                 ItemsSource="{Binding Categories}"
                                 SelectedItem="{Binding Category}"
                                 FontSize="14"
