@@ -94,9 +94,6 @@
       <MauiXaml Update="Views\AddRecipePage.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
-      <MauiXaml Update="Views\AllRecipesPage.xaml">
-        <Generator>MSBuild:Compile</Generator>
-      </MauiXaml>
       <MauiXaml Update="Views\AddMealPage.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>

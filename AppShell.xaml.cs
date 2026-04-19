@@ -10,7 +10,6 @@ public partial class AppShell : Shell
 
         Routing.RegisterRoute(nameof(SignUpPage), typeof(SignUpPage));
         Routing.RegisterRoute("AddRecipePage", typeof(Views.AddRecipePage));
-        Routing.RegisterRoute("AllRecipesPage", typeof(Views.AllRecipesPage));
         Routing.RegisterRoute(nameof(SettingsPage), typeof(Views.SettingsPage));
     }
 }
