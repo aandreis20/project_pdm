@@ -10,18 +10,41 @@
     <ScrollView>
         <VerticalStackLayout Padding="16,24" Spacing="24">
 
-            <Label Text="Settings" 
-                   FontAttributes="Bold" 
-                   FontSize="32" 
-                   TextColor="{AppThemeBinding Light={StaticResource OnSurface}, Dark={StaticResource Surface}}" 
-                   Margin="8,0,0,8"/>
+            <!-- Back button + Title row -->
+            <Grid ColumnDefinitions="Auto, *">
+                <Border Grid.Column="0"
+                        StrokeShape="RoundRectangle 12"
+                        StrokeThickness="0"
+                        BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceContainerLowest}, Dark={StaticResource Gray900}}"
+                        WidthRequest="40" HeightRequest="40"
+                        VerticalOptions="Center">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBackButtonTapped" />
+                    </Border.GestureRecognizers>
+                    <Label Text="&#xE5C4;"
+                           FontFamily="MaterialIcons"
+                           FontSize="22"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           TextColor="{AppThemeBinding Light={StaticResource OnSurface}, Dark={StaticResource Surface}}"/>
+                </Border>
 
+                <Label Grid.Column="1"
+                       Text="Settings"
+                       FontAttributes="Bold"
+                       FontSize="32"
+                       TextColor="{AppThemeBinding Light={StaticResource OnSurface}, Dark={StaticResource Surface}}"
+                       Margin="12,0,0,0"
+                       VerticalOptions="Center"/>
+            </Grid>
+
+            <!-- PERSONALIZATION -->
             <VerticalStackLayout Spacing="8">
-                <Label Text="PERSONALIZATION" 
-                       FontAttributes="Bold" 
-                       FontSize="12" 
-                       TextColor="{AppThemeBinding Light={StaticResource OnSurfaceVariant}, Dark={StaticResource Gray400}}" 
-                       CharacterSpacing="1.2" 
+                <Label Text="PERSONALIZATION"
+                       FontAttributes="Bold"
+                       FontSize="12"
+                       TextColor="{AppThemeBinding Light={StaticResource OnSurfaceVariant}, Dark={StaticResource Gray400}}"
+                       CharacterSpacing="1.2"
                        Margin="8,0,0,0"/>
 
                 <Border StrokeShape="RoundRectangle 16"
@@ -53,12 +76,13 @@
                 </Border>
             </VerticalStackLayout>
 
+            <!-- APPLICATION -->
             <VerticalStackLayout Spacing="8">
-                <Label Text="APPLICATION" 
-                       FontAttributes="Bold" 
-                       FontSize="12" 
-                       TextColor="{AppThemeBinding Light={StaticResource OnSurfaceVariant}, Dark={StaticResource Gray400}}" 
-                       CharacterSpacing="1.2" 
+                <Label Text="APPLICATION"
+                       FontAttributes="Bold"
+                       FontSize="12"
+                       TextColor="{AppThemeBinding Light={StaticResource OnSurfaceVariant}, Dark={StaticResource Gray400}}"
+                       CharacterSpacing="1.2"
                        Margin="8,0,0,0"/>
 
                 <Border StrokeShape="RoundRectangle 16"
@@ -75,21 +99,19 @@
                             </Grid.GestureRecognizers>
                             <Label Grid.Column="0" Text="&#xE88E;" FontFamily="MaterialIcons" FontSize="24" VerticalOptions="Center"
                                    TextColor="{AppThemeBinding Light={StaticResource Outline}, Dark={StaticResource Gray400}}"/>
-
                             <Label Grid.Column="1" Text="About Editorial Kitchen" FontSize="16" VerticalOptions="Center" Margin="16,0,0,0"
                                    TextColor="{AppThemeBinding Light={StaticResource OnSurface}, Dark={StaticResource Surface}}"/>
                         </Grid>
 
-                        <BoxView HeightRequest="1" Margin="56,0,0,0" 
+                        <BoxView HeightRequest="1" Margin="56,0,0,0"
                                  Color="{AppThemeBinding Light={StaticResource SurfaceContainerHigh}, Dark={StaticResource Gray600}}" />
 
                         <Grid Padding="16,16" ColumnDefinitions="Auto, *">
                             <Grid.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding TermsCommand}" />
+                                <TapGestureRecognizer Tapped="OnTermsTapped" />
                             </Grid.GestureRecognizers>
                             <Label Grid.Column="0" Text="&#xE873;" FontFamily="MaterialIcons" FontSize="24" VerticalOptions="Center"
                                    TextColor="{AppThemeBinding Light={StaticResource Outline}, Dark={StaticResource Gray400}}"/>
-
                             <Label Grid.Column="1" Text="Terms of Service" FontSize="16" VerticalOptions="Center" Margin="16,0,0,0"
                                    TextColor="{AppThemeBinding Light={StaticResource OnSurface}, Dark={StaticResource Surface}}"/>
                         </Grid>
