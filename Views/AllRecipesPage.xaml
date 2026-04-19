@@ -4,6 +4,7 @@
              xmlns:vm="clr-namespace:RecipesApp.ViewModels"
              xmlns:state="clr-namespace:RecipesApp.ViewModels.UIState"
              x:Class="RecipesApp.Views.AllRecipesPage"
+             x:Name="AllRecipesPageRoot"
              x:DataType="vm:AllRecipesViewModel"
              Shell.NavBarIsVisible="False"
              BackgroundColor="{AppThemeBinding Light={StaticResource Surface}, Dark={StaticResource OffBlack}}">
@@ -73,7 +74,9 @@
                             BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceContainerLowest}, Dark={StaticResource Gray900}}">
 
                         <Border.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:AllRecipesViewModel}}, Path=EditRecipeCommand}" CommandParameter="{Binding .}" />
+                            <TapGestureRecognizer
+                                Command="{Binding Source={x:Reference AllRecipesPageRoot}, Path=BindingContext.OpenRecipeCommand}"
+                                CommandParameter="{Binding .}" />
                         </Border.GestureRecognizers>
 
                         <Border.Shadow>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="RecipesApp.Views.RecipeDetailsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Recipe"
+    BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#121212}">
+
+    <Grid RowDefinitions="Auto,Auto,Auto,*,Auto" Padding="16" RowSpacing="12">
+
+        <!-- Header: Back + Edit -->
+        <Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto">
+            <!-- Back button -->
+            <Button Grid.Column="0"
+                    Text="Back"
+                    Command="{Binding GoBackCommand}"
+                    BackgroundColor="Transparent"
+                    TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark=White}"
+                    FontAttributes="Bold"
+                    Padding="8,4" />
+
+            <Label Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" Text="{Binding Title}" />
+            <Button Grid.Column="2"
+                    Text="Edit"
+                    Command="{Binding EditRecipeCommand}"
+                    IsVisible="{Binding IsOwner}"
+                    BackgroundColor="Transparent"
+                    TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark=White}"
+                    FontAttributes="Bold"
+                    Padding="8,4"/>
+        </Grid>
+
+        <!-- Image -->
+        <Frame Grid.Row="1" CornerRadius="12" Padding="0" HasShadow="False" BackgroundColor="Transparent" HeightRequest="200">
+            <Image Aspect="AspectFill" Source="{Binding ImageUrl}" />
+        </Frame>
+
+        <!-- Meta: category / prep / calories -->
+        <HorizontalStackLayout Grid.Row="2" Spacing="16">
+            <Label Text="{Binding Category}" FontAttributes="Italic" TextColor="#666" />
+            <Label Text="{Binding PrepTime, StringFormat='Prep: {0} min'}" TextColor="#666" />
+            <Label Text="{Binding Calories, StringFormat='Cal: {0} kcal'}" TextColor="#666" />
+        </HorizontalStackLayout>
+
+        <!-- Content: description + ingredients -->
+        <ScrollView Grid.Row="3">
+            <VerticalStackLayout Spacing="12">
+                <Label Text="Description" FontAttributes="Bold" />
+                <Label Text="{Binding Description}" />
+
+                <Label Text="Ingredients" FontAttributes="Bold" />
+                <Label Text="{Binding Ingredients}" LineBreakMode="WordWrap" />
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Loading / Error -->
+        <Grid Grid.Row="4" ColumnDefinitions="*,Auto" VerticalOptions="End">
+            <Label Text="{Binding ErrorMessage}" TextColor="Red" IsVisible="{Binding HasError}" VerticalOptions="Center" />
+            <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" Color="#FF6B35" />
+        </Grid>
+
+    </Grid>
+</ContentPage>

@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using RecipesApp.Services;
 using RecipesApp.ViewModels.UIState;
+using RecipesApp.Views;
 using System.Collections.ObjectModel;
 
 public partial class AllRecipesViewModel : ObservableObject
@@ -86,5 +87,28 @@ public partial class AllRecipesViewModel : ObservableObject
     {
         if (selectedRecipe == null) return;
         await Shell.Current.GoToAsync($"AddRecipePage?recipeId={selectedRecipe.Id}");
+    }
+
+    [RelayCommand]
+    private async Task OpenRecipeAsync(RecipeUi selectedRecipe)
+    {
+        if (selectedRecipe == null) return;
+
+        // Resolve details page from DI
+        var page = MauiProgram.Services.GetService<RecipeDetailsPage>();
+        if (page == null)
+        {
+            await Shell.Current.DisplayAlert("Error", "Unable to open recipe details.", "OK");
+            return;
+        }
+
+        // Pass id to VM so it loads the recipe
+        if (page.BindingContext is RecipeDetailsViewModel vm)
+        {
+            vm.RecipeId = selectedRecipe.Id;
+        }
+
+        // Present modally to match existing app behavior
+        await Shell.Current.Navigation.PushModalAsync(page);
     }
 }

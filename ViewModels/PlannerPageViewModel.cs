@@ -6,6 +6,7 @@ using RecipesApp.Data;
 using RecipesApp.Services;
 using Microsoft.Maui.ApplicationModel;
 using System.Linq;
+using RecipesApp.Views;
 
 namespace RecipesApp.ViewModels;
 
@@ -92,9 +93,6 @@ public partial class PlannerPageViewModel : ObservableObject
         _ = LoadMealsAsync();
     }
 
-    // Add these usings near the top of the file if not already present:
-
-
     [RelayCommand]
     private async Task DeleteMealAsync(MealPlan? mealPlan)
     {
@@ -142,6 +140,26 @@ public partial class PlannerPageViewModel : ObservableObject
         {
             IsLoading = false;
         }
+    }
+
+    [RelayCommand]
+    private async Task OpenRecipeAsync(Recipe? recipe)
+    {
+        if (recipe == null) return;
+
+        var page = MauiProgram.Services.GetService<RecipeDetailsPage>();
+        if (page == null)
+        {
+            await Shell.Current.DisplayAlert("Error", "Unable to open recipe details.", "OK");
+            return;
+        }
+
+        if (page.BindingContext is RecipeDetailsViewModel vm)
+        {
+            vm.RecipeId = recipe.Id;
+        }
+
+        await Shell.Current.Navigation.PushModalAsync(page);
     }
 }
 

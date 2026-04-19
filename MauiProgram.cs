@@ -18,9 +18,10 @@ public static class MauiProgram
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                fonts.AddFont("MaterialSymbolsRounded_28pt-Bold.ttf", "MaterialIcons");
-                fonts.AddFont("MaterialIcons-Regular.ttf", "MaterialIcons"); // Must match XAML
-                fonts.AddFont("NotoSerif-Italic.ttf", "NotoSerif"); // Must match XAML
+                fonts.AddFont("MaterialIcons-Regular.ttf", "MaterialIcons");
+                fonts.AddFont("NotoSerif-Italic.ttf", "NotoSerif");
+                // use the existing MaterialSymbols file and give it a usable alias
+                fonts.AddFont("MaterialSymbolsRounded_28pt-Bold.ttf", "MaterialSymbolsRounded");
             });
 
 #if DEBUG
@@ -46,6 +47,8 @@ public static class MauiProgram
         builder.Services.AddTransient<Views.AllRecipesPage>();
         builder.Services.AddTransient<SettingsViewModel>();
         builder.Services.AddTransient<SettingsPage>();
+        builder.Services.AddTransient<RecipeDetailsViewModel>();
+        builder.Services.AddTransient<RecipeDetailsPage>();
 
 
         var app = builder.Build();

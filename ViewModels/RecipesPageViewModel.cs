@@ -102,4 +102,27 @@ public partial class RecipesPageViewModel : ObservableObject
         // Shell.Current.GoToAsync uses string-based URI routing
         await Shell.Current.GoToAsync(nameof(SettingsPage));
     }
+
+    [RelayCommand]
+    private async Task OpenRecipeAsync(RecipeUi selectedRecipe)
+    {
+        if (selectedRecipe == null) return;
+
+        // Resolve the details page from DI (must be registered in MauiProgram)
+        var page = MauiProgram.Services.GetService<RecipeDetailsPage>();
+        if (page == null)
+        {
+            await Shell.Current.DisplayAlert("Error", "Unable to open recipe details.", "OK");
+            return;
+        }
+
+        // Pass the id to the viewmodel so it loads the recipe
+        if (page.BindingContext is RecipeDetailsViewModel vm)
+        {
+            vm.RecipeId = selectedRecipe.Id;
+        }
+
+        // Show as modal (keeps behavior consistent with other modal pages in the app)
+        await Shell.Current.Navigation.PushModalAsync(page);
+    }
 }

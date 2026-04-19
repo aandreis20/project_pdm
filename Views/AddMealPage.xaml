@@ -19,8 +19,20 @@
         <Picker ItemsSource="{Binding Recipes}" ItemDisplayBinding="{Binding Title}" SelectedItem="{Binding SelectedRecipe}" />
 
         <HorizontalStackLayout Spacing="12" HorizontalOptions="End">
-            <Button Text="Cancel" Command="{Binding CancelCommand}" />
-            <Button Text="Save" Command="{Binding SaveCommand}" IsEnabled="{Binding IsSaving, Converter={StaticResource InverseBooleanConverter}}" />
+            <Button Text="Cancel"
+                    Command="{Binding CancelCommand}"
+                    BackgroundColor="Transparent"
+                    TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark=White}"
+                    FontAttributes="Bold" />
+
+            <Button Text="Save"
+                    Command="{Binding SaveCommand}"
+                    IsEnabled="{Binding IsSaving, Converter={StaticResource InverseBooleanConverter}}"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    Padding="12,8"
+                    CornerRadius="6" />
         </HorizontalStackLayout>
 
     </VerticalStackLayout>

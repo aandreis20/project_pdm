@@ -93,6 +93,12 @@
                                             BackgroundColor="{AppThemeBinding Light=White, Dark=#1E1E1E}"
                                             BorderColor="Transparent"
                                             CornerRadius="10">
+                                            <Frame.GestureRecognizers>
+                                                <TapGestureRecognizer
+                                                    Command="{Binding Source={x:Reference PlannerPageRoot}, Path=BindingContext.OpenRecipeCommand}"
+                                                    CommandParameter="{Binding Recipe}" />
+                                            </Frame.GestureRecognizers>
+
                                             <Grid ColumnDefinitions="56,*,Auto">
 
                                                 <!-- Recipe image -->

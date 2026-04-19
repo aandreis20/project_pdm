@@ -62,6 +62,7 @@
         <MauiFont Include="Resources\Fonts\OpenSans-Regular.ttf" />
         <MauiFont Include="Resources\Fonts\OpenSans-Semibold.ttf" />
         <MauiFont Include="Resources\Fonts\MaterialSymbolsRounded_28pt-Bold.ttf" />
+        <MauiFont Include="Resources\Fonts\NotoSerif-Italic.ttf" />
 
         <!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
         <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
@@ -96,6 +97,9 @@
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
       <MauiXaml Update="Views\AddMealPage.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </MauiXaml>
+      <MauiXaml Update="Views\RecipeDetailsPage.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
       <MauiXaml Update="Views\SettingsPage.xaml">
