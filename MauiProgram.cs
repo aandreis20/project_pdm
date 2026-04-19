@@ -19,6 +19,8 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 fonts.AddFont("MaterialSymbolsRounded_28pt-Bold.ttf", "MaterialIcons");
+                fonts.AddFont("MaterialIcons-Regular.ttf", "MaterialIcons"); // Must match XAML
+                fonts.AddFont("NotoSerif-Italic.ttf", "NotoSerif"); // Must match XAML
             });
 
 #if DEBUG
@@ -29,10 +31,14 @@ public static class MauiProgram
         builder.Services.AddSingleton<ISupabaseAuthService, SupabaseAuthService>();
         builder.Services.AddSingleton<IRecipeService, SupabaseRecipeService>();
         builder.Services.AddSingleton<ISettingsService, SettingsService>();
+        builder.Services.AddSingleton<MealPlanService>();
+        builder.Services.AddTransient<AddMealPlanViewModel>();
+        builder.Services.AddTransient<AddMealPage>();
         builder.Services.AddTransient<LoginPageViewModel>();
         builder.Services.AddTransient<SignUpPageViewModel>();
         builder.Services.AddTransient<RecipesPageViewModel>();
         builder.Services.AddTransient<PlannerPageViewModel>();
+        builder.Services.AddTransient<PlannerPage>();
         builder.Services.AddTransient<ProfilePageViewModel>();
         builder.Services.AddTransient<AddRecipeViewModel>();
         builder.Services.AddTransient<Views.AddRecipePage>();

@@ -1,11 +1,11 @@
-using Supabase.Postgrest.Attributes;
+﻿using Supabase.Postgrest.Attributes;
 using Supabase.Postgrest.Models;
 using System.Text.Json.Serialization;
 
 namespace RecipesApp.Data
 {
     [Table("meal_plans")]
-    public class MealPlan : BaseModel
+    public class MealPlanSimple : BaseModel
     {
         [PrimaryKey("id", false)]
         public Guid Id { get; set; }
@@ -21,8 +21,5 @@ namespace RecipesApp.Data
 
         [Column("meal_type")]
         public string? MealType { get; set; }
-
-        [JsonIgnore]
-        public Recipe? Recipe { get; set; }
     }
 }

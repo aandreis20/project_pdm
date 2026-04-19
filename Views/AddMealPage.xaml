@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="RecipesApp.Views.AddMealPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:RecipesApp.ViewModels"
+    Title="Add Meal"
+    BackgroundColor="{AppThemeBinding Light=#F5F5F5, Dark=#121212}">
+
+    <VerticalStackLayout Padding="16" Spacing="12">
+
+        <Label Text="Date" FontAttributes="Bold" />
+        <DatePicker Date="{Binding SelectedDate}" />
+
+        <Label Text="Meal Type" FontAttributes="Bold" />
+        <Picker ItemsSource="{Binding MealTypes}" SelectedItem="{Binding SelectedMealType}" />
+
+        <Label Text="Recipe" FontAttributes="Bold" />
+        <Picker ItemsSource="{Binding Recipes}" ItemDisplayBinding="{Binding Title}" SelectedItem="{Binding SelectedRecipe}" />
+
+        <HorizontalStackLayout Spacing="12" HorizontalOptions="End">
+            <Button Text="Cancel" Command="{Binding CancelCommand}" />
+            <Button Text="Save" Command="{Binding SaveCommand}" IsEnabled="{Binding IsSaving, Converter={StaticResource InverseBooleanConverter}}" />
+        </HorizontalStackLayout>
+
+    </VerticalStackLayout>
+</ContentPage>

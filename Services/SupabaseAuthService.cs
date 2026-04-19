@@ -10,6 +10,7 @@ public sealed class SupabaseAuthService : ISupabaseAuthService
     }
 
     public string? CurrentUserEmail => supabase.Client.Auth.CurrentUser?.Email;
+    public Guid? CurrentUserId => Guid.TryParse(supabase.Client.Auth.CurrentUser?.Id, out var id) ? id : null;
 
     public async Task<AuthResult> SignInAsync(string email, string password)
     {
@@ -22,7 +23,6 @@ public sealed class SupabaseAuthService : ISupabaseAuthService
             {
                 return AuthResult.Failure("Autentificarea nu a returnat un utilizator valid.");
             }
-
             return AuthResult.Success();
         }
         catch (Exception exception)

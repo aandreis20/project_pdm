@@ -3,6 +3,7 @@ namespace RecipesApp.Services;
 public interface ISupabaseAuthService
 {
     string? CurrentUserEmail { get; }
+    Guid? CurrentUserId { get; }
 
     Task<AuthResult> SignInAsync(string email, string password);
 
