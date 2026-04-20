@@ -34,6 +34,14 @@ public partial class PlannerPageViewModel : ObservableObject
 
     public ObservableCollection<MealSection> Sections { get; } = new();
 
+    public int TotalPrepTime => Sections
+        .SelectMany(s => s.Meals)
+        .Sum(m => m.Recipe?.PrepTime ?? 0);
+
+    public int TotalCalories => Sections
+        .SelectMany(s => s.Meals)
+        .Sum(m => m.Recipe?.Calories ?? 0);
+
     [RelayCommand]
     public async Task LoadMealsAsync()
     {
@@ -78,6 +86,8 @@ public partial class PlannerPageViewModel : ObservableObject
         finally
         {
             IsLoading = false;
+            OnPropertyChanged(nameof(TotalPrepTime));
+            OnPropertyChanged(nameof(TotalCalories));
         }
     }
 
@@ -89,7 +99,9 @@ public partial class PlannerPageViewModel : ObservableObject
 
     partial void OnSelectedDateChanged(DateTime value)
     {
-        // trigger reload when date changes
+        Sections.Clear();
+        OnPropertyChanged(nameof(TotalPrepTime));
+        OnPropertyChanged(nameof(TotalCalories));
         _ = LoadMealsAsync();
     }
 
@@ -130,6 +142,9 @@ public partial class PlannerPageViewModel : ObservableObject
                         }
                     }
                 }
+
+                OnPropertyChanged(nameof(TotalPrepTime));
+                OnPropertyChanged(nameof(TotalCalories));
             });
         }
         catch (Exception ex)

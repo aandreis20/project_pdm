@@ -9,7 +9,7 @@
     Title="Meal Planner"
     BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#121212}">
 
-    <Grid RowDefinitions="Auto,Auto,*">
+    <Grid RowDefinitions="Auto,Auto,Auto,*">
 
         <!-- Date Navigator -->
         <Border
@@ -38,7 +38,7 @@
                            FontSize="22"
                            HorizontalOptions="Center"
                            VerticalOptions="Center"
-                           TextColor="#FF6B35" />
+                           TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
                 </Border>
 
                 <VerticalStackLayout
@@ -72,21 +72,80 @@
                            FontSize="22"
                            HorizontalOptions="Center"
                            VerticalOptions="Center"
-                           TextColor="#FF6B35" />
+                           TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
                 </Border>
+
+            </Grid>
+        </Border>
+
+        <!-- Daily Totals Summary -->
+        <Border
+            Grid.Row="1"
+            Margin="16,0,16,8"
+            Padding="16,12"
+            BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceContainerLowest}, Dark=#1E1E1E}"
+            StrokeThickness="0"
+            StrokeShape="RoundRectangle 12">
+            <Border.Shadow>
+                <Shadow Brush="Black" Offset="0,2" Radius="6" Opacity="0.05" />
+            </Border.Shadow>
+            <Grid ColumnDefinitions="*,Auto,*">
+
+                <!-- Prep Time -->
+                <VerticalStackLayout Grid.Column="0" HorizontalOptions="Center" Spacing="2">
+                    <Label Text="&#xE422;"
+                           FontFamily="MaterialIcons"
+                           FontSize="20"
+                           HorizontalOptions="Center"
+                           TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+                    <Label Text="{Binding TotalPrepTime, StringFormat='{0} min'}"
+                           FontAttributes="Bold"
+                           FontSize="15"
+                           HorizontalOptions="Center"
+                           TextColor="{AppThemeBinding Light={StaticResource OnSurface}, Dark=White}" />
+                    <Label Text="Total Prep"
+                           FontSize="11"
+                           HorizontalOptions="Center"
+                           TextColor="{AppThemeBinding Light={StaticResource OnSurfaceVariant}, Dark=#AAA}" />
+                </VerticalStackLayout>
+
+                <!-- Divider -->
+                <BoxView Grid.Column="1"
+                         WidthRequest="1"
+                         HeightRequest="40"
+                         VerticalOptions="Center"
+                         Color="{AppThemeBinding Light={StaticResource OutlineVariant}, Dark=#333}" />
+
+                <!-- Calories -->
+                <VerticalStackLayout Grid.Column="2" HorizontalOptions="Center" Spacing="2">
+                    <Label Text="&#xE253;"
+                           FontFamily="MaterialIcons"
+                           FontSize="20"
+                           HorizontalOptions="Center"
+                           TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+                    <Label Text="{Binding TotalCalories, StringFormat='{0} kcal'}"
+                           FontAttributes="Bold"
+                           FontSize="15"
+                           HorizontalOptions="Center"
+                           TextColor="{AppThemeBinding Light={StaticResource OnSurface}, Dark=White}" />
+                    <Label Text="Total Calories"
+                           FontSize="11"
+                           HorizontalOptions="Center"
+                           TextColor="{AppThemeBinding Light={StaticResource OnSurfaceVariant}, Dark=#AAA}" />
+                </VerticalStackLayout>
 
             </Grid>
         </Border>
 
         <!-- Loading indicator -->
         <ActivityIndicator
-            Grid.Row="1"
+            Grid.Row="2"
             IsRunning="{Binding IsLoading}"
             IsVisible="{Binding IsLoading}"
-            Color="#FF6B35" />
+            Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
 
         <!-- Sections list -->
-        <ScrollView Grid.Row="2" Margin="16,0">
+        <ScrollView Grid.Row="3" Margin="16,0">
             <VerticalStackLayout BindableLayout.ItemsSource="{Binding Sections}">
                 <BindableLayout.ItemTemplate>
                     <DataTemplate x:DataType="vm:MealSection">
@@ -98,7 +157,7 @@
                                 FontSize="14"
                                 Margin="4,8,0,8"
                                 Text="{Binding MealType}"
-                                TextColor="#FF6B35" />
+                                TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
 
                             <!-- Meal cards -->
                             <VerticalStackLayout BindableLayout.ItemsSource="{Binding Meals}">
@@ -188,15 +247,15 @@
 
         <!-- FAB -->
         <Button
-            Grid.Row="2"
-            BackgroundColor="#FF6B35"
+            Grid.Row="3"
+            BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"
             CornerRadius="28"
             FontSize="24"
             HeightRequest="56"
             HorizontalOptions="End"
             Margin="0,0,24,24"
             Text="+"
-            TextColor="White"
+            TextColor="{AppThemeBinding Light=White, Dark={StaticResource PrimaryDarkText}}"
             VerticalOptions="End"
             WidthRequest="56"
             Clicked="OnAddMealClicked" />

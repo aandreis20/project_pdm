@@ -59,7 +59,7 @@ public partial class SettingsViewModel : ObservableObject
     [RelayCommand]
     private async Task AboutAsync()
     {
-        await Application.Current.MainPage.DisplayAlert("About", "Editorial Kitchen v1.0", "OK");
+        await Application.Current.MainPage.DisplayAlert("About", "This is a project for the PDM app. It has the basic functionalities to view, add and edit recipes. There is also a Planner screen where meals can be grouped for each day. Enjoy!", "OK");
     }
 
     [RelayCommand]
