@@ -127,11 +127,6 @@
                                    FontSize="11"
                                    CharacterSpacing="1.4"
                                    TextColor="{AppThemeBinding Light={StaticResource OnSurfaceVariant}, Dark={StaticResource Gray400}}" />
-                            <Label Grid.Column="1"
-                                   Text="Forgot Password?"
-                                   FontFamily="OpenSansSemibold"
-                                   FontSize="12"
-                                   TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
                         </Grid>
 
                         <Border HeightRequest="58"
